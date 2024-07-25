@@ -1,22 +1,45 @@
-import logo from './logo.jpg';
 import './App.css';
 import { useState } from "react"
-import Form from "./Components/Form"
-
+import TemperatureForm from "./Components/TemperatureForm"
+import LengthForm from "./Components/LengthForm"
+import DropdownMenu from "./Components/DropdownMenu"
 
 function App() {
-  const [tempType, setTempType] = useState(false)
+  const [conversionType, setConversionType] = useState("")
+  console.log(conversionType)
+
+  const handleChange = (e) => {
+    setConversionType(e)
+  }
+  
+  const renderSwitch = (param) => {
+    switch(param) {
+      case "Temperature":
+        return <div>
+                  <TemperatureForm/> 
+                </div>
+      case "Length":
+        return <div>
+                  <LengthForm/>
+              </div>
+      default:
+        return <div>
+                <h1>Choose conversion type</h1>
+              </div>        
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={() => setTempType(!tempType)}>Change Temp Type</button>
-        <Form tempType={tempType}/>
+        {renderSwitch(conversionType)}
+        <DropdownMenu sendToParent={handleChange}/>
         <p>
           Goku on kuollut. Kauan eläkoon Goku.
         </p>
       </header>
     </div>
-  );
+  )
 }
 
 export default App;

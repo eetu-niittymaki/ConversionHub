@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import {cToF, fToC } from "../Utilities/calculations"
+import { cToF, fToC } from "../Utilities/calculations"
 
-export default function MyForm({tempType}) {
+export default function MyForm() {
     const [value, setValue] = useState("")
+    const [tempType, setTempType] = useState(false)
     const handleChange = e => {
         setValue(e.target.value)
     }
@@ -10,6 +11,7 @@ export default function MyForm({tempType}) {
     if (tempType === true) {
         return (
             <div>
+                <button onClick={() => setTempType(!tempType)}>Change Temp Type</button> 
                 <h1>Fahrenheit To Celcius</h1>
                 <form>
                     <label>
@@ -22,6 +24,7 @@ export default function MyForm({tempType}) {
     } else {
         return (
             <div>
+                <button onClick={() => setTempType(!tempType)}>Change Temp Type</button> 
                 <h1>Celcius To Fahrenheit</h1>
                 <form>
                     <label>
