@@ -1,22 +1,19 @@
 import logo from './logo.jpg';
 import './App.css';
+import { useState } from "react"
+import Form from "./Components/Form"
+
 
 function App() {
+  const [tempType, setTempType] = useState(false)
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <button onClick={() => setTempType(!tempType)}>Change Temp Type</button>
+        <Form tempType={tempType}/>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Goku on kuollut. Kauan eläkoon Goku.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
