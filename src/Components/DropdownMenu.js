@@ -16,6 +16,7 @@ export default function DropdownMenu ({sendToParent}) {
                 <option value={"default"}>Choose Conversion</option>
                 <option value="Temperature">Temperature</option>
                 <option value="Length">Length</option>
+                <option value="Currencies">Currencies</option>
             </select>
         </div>
     )

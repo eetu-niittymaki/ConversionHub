@@ -1,32 +1,20 @@
 import './App.css';
-import axios from 'axios';
-import { useState, useEffect } from "react"
+import { useState, } from "react"
 import Form from "./Components/Form"
 import LengthForm from "./Components/LengthForm"
 import DropdownMenu from "./Components/DropdownMenu"
+import Currencies from './Components/Currencies';
 import { meterToMile, mileToMeter, cToF, fToC } from "./Utilities/calculations"
 
 function App() {
   //console.log(process.env.REACT_APP_API_KEY)
   const [conversionType, setConversionType] = useState("")
-  const [dollar, setDollar] = useState()
 
-  useEffect(() => {
-    axios.get(`https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_API_KEY}/latest/USD`)
-        .then((response) => {
-          setDollar(response.data.conversion_rates)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-  }, [])
 
   const handleChange = (e) => {
     setConversionType(e)
   }
 
-  console.log("Dollar: ", dollar)
-  
   const renderSwitch = (param) => {
     switch(param) {
       case "Temperature":
@@ -40,6 +28,10 @@ function App() {
       case "Length":
         return <div>
                   <LengthForm/>
+              </div>
+      case "Currencies":
+        return <div>
+                  <Currencies/>
               </div>
       default:
         return <div>
