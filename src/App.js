@@ -1,10 +1,12 @@
 import './App.css';
 import { useState } from "react"
-import TemperatureForm from "./Components/TemperatureForm"
+import Form from "./Components/Form"
 import LengthForm from "./Components/LengthForm"
 import DropdownMenu from "./Components/DropdownMenu"
+import { meterToMile, mileToMeter, cToF, fToC } from "./Utilities/calculations"
 
 function App() {
+  console.log(process.env.API_KEY)
   const [conversionType, setConversionType] = useState("")
   console.log(conversionType)
 
@@ -16,7 +18,11 @@ function App() {
     switch(param) {
       case "Temperature":
         return <div>
-                  <TemperatureForm/> 
+                  <Form
+                    title1="Celcius To Fahrenheit"
+                    title2="Fahrenheit To Celcius"
+                    func1={cToF}
+                    func2={fToC}/> 
                 </div>
       case "Length":
         return <div>
