@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import axios from "axios";
 
 const  Currencies = () => {
@@ -8,10 +8,12 @@ const  Currencies = () => {
     const [origCurrency, setOrigCurrency] = useState("USD")
     const [finalCurrency, setFinalCurrency] = useState("USD")
     const [conversion, setConversion] = useState()
+    let newAmount = useRef(0)
 
     const handleChange = e => {
         setAmount(e.target.value)
-        calculateConversion(e.target.value)
+        newAmount.current = e.target.value
+        calculateConversion()
     }
 
     const getRates = async () => {
@@ -22,11 +24,10 @@ const  Currencies = () => {
         }
     }
 
-    const calculateConversion = async (curr_amount) => {
-        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_API_KEY}/pair/${origCurrency}/${finalCurrency}/${curr_amount}`)
+    const calculateConversion = async () => {
+        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_API_KEY}/pair/${origCurrency}/${finalCurrency}/${newAmount.current}`)
         const fetchedRate = response.data.conversion_rate;
-        const output = curr_amount * fetchedRate;
-        console.log(output)
+        const output = newAmount.current * fetchedRate;
         setConversion(output);
     }
 
@@ -41,7 +42,7 @@ const  Currencies = () => {
                 <select name="origCurrency"
                         id="origCurrency"
                         value={origCurrency}
-                        onChange={(e) => setOrigCurrency(e.target.value)}>
+                        onChange={(e) => { setOrigCurrency(e.target.value); calculateConversion() }}>
                         {ratesFetched ? (
                             Object.keys(rates).map((currency, index) => (
                                 <option key={index} value={currency}>
@@ -64,7 +65,7 @@ const  Currencies = () => {
                 <label>To:</label>
                 <select id="finalCurrency"
                         value={finalCurrency}
-                        onChange={(e) => setFinalCurrency(e.target.value)}>
+                        onChange={(e) => { setFinalCurrency(e.target.value) ; calculateConversion() }}>
                     {ratesFetched ? (
                         Object.keys(rates).map((currency, index) => (
                             <option key={index} value={currency}>
