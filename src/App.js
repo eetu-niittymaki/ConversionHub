@@ -4,10 +4,10 @@ import Form from "./Components/Form"
 import LengthForm from "./Components/LengthForm"
 import DropdownMenu from "./Components/DropdownMenu"
 import Currencies from './Components/Currencies';
+import Header from './Components/Header';
 import { meterToMile, mileToMeter, cToF, fToC } from "./Utilities/calculations"
 
 function App() {
-  //console.log(process.env.REACT_APP_API_KEY)
   const [conversionType, setConversionType] = useState("")
 
 
@@ -42,9 +42,14 @@ function App() {
 
   return (
     <div className="App">
+      <Header sendToParent={handleChange}>
+        <p>Length</p>
+        <p>Temperature</p>
+        <p>Currencies</p>
+      </Header >
       <header className="App-header">
         {renderSwitch(conversionType)}
-        <DropdownMenu sendToParent={handleChange}/>
+        {/*<DropdownMenu sendToParent={handleChange}/>*/}
         <p>
           Goku on kuollut. Kauan eläkoon Goku.
         </p>
