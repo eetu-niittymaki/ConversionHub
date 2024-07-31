@@ -1,40 +1,54 @@
 import React, { useState } from "react";
 import { meterToMile, mileToMeter} from "../Utilities/calculations"
 
+
 export default function MyForm() {
     const [value, setValue] = useState("")
-    const [tempType, setTempType] = useState(false)
+    const [change, setChange] = useState(false)
+    const [firstSelection, setFirstSelection] = useState("m")
+    const [lastSelection, setLastSelection] = useState("mile")
     const handleChange = e => {
-        setValue(e.target.value)
+        setValue(e.target.value)    
     }
+
+    const units = { 
+                "mm": 0.001, "cm": 0.01, "dm": 0.1, "m": 1.0, "dam": 10.0, "hm": 100.0, "km": 1000.0,
+                "mile": 1609.344, 
+            }
     
-    if (tempType === true) {
-        return (
-            <div>
-                <button onClick={() => setTempType(!tempType)}>Change Measurement Type</button> 
-                <h1>Meter To Miles</h1>
-                <form>
-                    <label>
-                        Meter: <input type="text" value={value} onChange={handleChange}/>
-                    </label>
-                </form>
-                <h1>Miles {value !== "" ? meterToMile(value) : ""}</h1>
+    console.log(units["mm"])
+
+    return (
+        <div>
+            <button onClick={() => setChange(!change)}>{"<-->"}</button> 
+            <h1>Length Units</h1>
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                <h3>From: </h3>
+                <select name="firstSelection" 
+                        id="firstSelection"
+                        value={firstSelection}
+                        onChange={e => setFirstSelection(e.target.value)}>
+                            {Object.keys(units).map((unit) => (
+                                <option value={unit}>{unit}</option>
+                            ))}
+                </select>
+                <h3>To: </h3>
+                <select name="lastSelection" 
+                        id="lastSelection"
+                        value={lastSelection}
+                        onChange={e => setLastSelection(e.target.value)}>
+                            {Object.keys(units).filter(unit => unit !== firstSelection).map((unit) => (
+                                <option value={unit}>{unit}</option>
+                            ))}
+                </select>
             </div>
-        )
-    } else {
-        return (
-            <div>
-                <button onClick={() => setTempType(!tempType)}>Change Temp Type</button> 
-                <h1>Miles To Meters</h1>
-                <form>
-                    <label>
-                        Miles: <input type="text" value={value} onChange={handleChange}/>
-                    </label>
-                </form>
-                <h1>Meters: {value !== "" ? mileToMeter(value) : ""}</h1>
-            </div>
-        )
-    }
-    
+            <form>
+                <label>
+                    Values: <input type="text" value={value} onChange={handleChange}/>
+                </label>
+            </form>
+            <h1>Result: {value * (units[firstSelection] / units[lastSelection])}</h1>
+        </div>
+    )
   }
   
