@@ -2,6 +2,7 @@ import './App.css';
 import { useState, } from "react"
 import Form from "./Components/Form"
 import LengthForm from "./Components/LengthForm"
+import TemperatureForm from './Components/TemperatureForm';
 import DropdownMenu from "./Components/DropdownMenu"
 import Currencies from './Components/Currencies';
 import Header from './Components/Header';
@@ -9,7 +10,6 @@ import { meterToMile, mileToMeter, cToF, fToC } from "./Utilities/calculations"
 
 function App() {
   const [conversionType, setConversionType] = useState("")
-
 
   const handleChange = (e) => {
     setConversionType(e)
@@ -19,11 +19,7 @@ function App() {
     switch(param) {
       case "Temperature":
         return <div>
-                  <Form
-                    title1="Celcius To Fahrenheit"
-                    title2="Fahrenheit To Celcius"
-                    func1={cToF}
-                    func2={fToC}/> 
+                  <TemperatureForm/>
                 </div>
       case "Length":
         return <div>

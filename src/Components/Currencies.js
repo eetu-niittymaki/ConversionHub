@@ -33,7 +33,7 @@ const  Currencies = () => {
 
     useEffect(() => {
       getRates()
-    }, [])
+    }, [rates])
 
     return(
         <div>
