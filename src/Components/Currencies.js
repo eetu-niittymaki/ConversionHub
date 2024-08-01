@@ -10,6 +10,18 @@ const  Currencies = () => {
     const [conversion, setConversion] = useState()
     let newAmount = useRef(0)
 
+    const apiKeys = [ 
+                process.env.REACT_APP_API_KEY1, 
+                process.env.REACT_APP_API_KEY2, 
+                process.env.REACT_APP_API_KEY3, 
+                process.env.REACT_APP_API_KEY4, 
+                process.env.REACT_APP_API_KEY5,
+            ]
+
+    const randKey = () => {
+        return Math.floor(Math.random() * apiKeys.length)
+    }
+
     const handleChange = e => {
         setAmount(e.target.value)
         newAmount.current = e.target.value
@@ -17,23 +29,36 @@ const  Currencies = () => {
     }
 
     const getRates = async () => {
-        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_API_KEY}/latest/USD`)
-        if (response.data.result === "success") {
-            setRates(response.data.conversion_rates)
-            setRatesFetched(true)
+        if (ratesFetched === false) {
+            const response = await axios.get(`https://v6.exchangerate-api.com/v6/${apiKeys[randKey()]}/latest/USD`)
+            if (response.data.result === "su
+                ccess") {
+                setRates(response.data.conversion_rates)
+                setRatesFetched(true)
+            }
         }
     }
 
     const calculateConversion = async () => {
-        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_API_KEY}/pair/${origCurrency}/${finalCurrency}/${newAmount.current}`)
+        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${apiKeys[randKey()]}/pair/${origCurrency}/${finalCurrency}/${newAmount.current}`)
         const fetchedRate = response.data.conversion_rate;
         const output = newAmount.current * fetchedRate;
         setConversion(output);
     }
 
     useEffect(() => {
-      getRates()
-    }, [rates])
+        const interval = setInterval(() => { 
+            setRatesFetched(false)
+            getRates()
+        }, 60000 * 60 * 16)
+        return () => clearInterval(interval)
+    }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            getRates()
+        }, 500)
+    }, [])
 
     return(
         <div>

@@ -78,7 +78,7 @@ export default function TemperatureForm() {
                         Amount: <input type="text" value={amount} onChange={handleChange}/>
                     </label>
                 </form>
-                <h3>Result: {calculateTemp()}</h3>
+                <h3>Result: {amount === "" ? "" : calculateTemp()}</h3>
             </div>
         </div>
     )
