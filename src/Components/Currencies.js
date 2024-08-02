@@ -31,8 +31,7 @@ const  Currencies = () => {
     const getRates = async () => {
         if (ratesFetched === false) {
             const response = await axios.get(`https://v6.exchangerate-api.com/v6/${apiKeys[randKey()]}/latest/USD`)
-            if (response.data.result === "su
-                ccess") {
+            if (response.data.result === "success") {
                 setRates(response.data.conversion_rates)
                 setRatesFetched(true)
             }
