@@ -7,8 +7,8 @@ const  Currencies = () => {
     const [ratesFetched, setRatesFetched] = useState(false);
     const [origCurrency, setOrigCurrency] = useState("USD")
     const [finalCurrency, setFinalCurrency] = useState("USD")
-    const [conversion, setConversion] = useState()
     let newAmount = useRef(0)
+    let conversion = useRef(0)
 
     const apiKeys = [ 
                 process.env.REACT_APP_API_KEY1, 
@@ -39,10 +39,7 @@ const  Currencies = () => {
     }
 
     const calculateConversion = async () => {
-        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${apiKeys[randKey()]}/pair/${origCurrency}/${finalCurrency}/${newAmount.current}`)
-        const fetchedRate = response.data.conversion_rate;
-        const output = newAmount.current * fetchedRate;
-        setConversion(output);
+        conversion.current = (rates[origCurrency] / rates[finalCurrency]) * newAmount.current
     }
 
     useEffect(() => {
@@ -66,7 +63,7 @@ const  Currencies = () => {
                 <select name="origCurrency"
                         id="origCurrency"
                         value={origCurrency}
-                        onChange={(e) => { setOrigCurrency(e.target.value); calculateConversion() }}>
+                        onChange={(e) => { setOrigCurrency(e.target.value) ;  calculateConversion()}}>
                         {ratesFetched ? (
                             Object.keys(rates).map((currency, index) => (
                                 <option key={index} value={currency}>
@@ -101,8 +98,8 @@ const  Currencies = () => {
                     )}
                 </select>
             </div>
-                    <h1>Conversion: {conversion}</h1>
-            </div>
+                <h1>Conversion: {conversion.current}</h1>
+        </div>
     )
 
 }
