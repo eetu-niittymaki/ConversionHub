@@ -6,7 +6,7 @@ import TemperatureForm from './Components/TemperatureForm';
 import DropdownMenu from "./Components/DropdownMenu"
 import Currencies from './Components/Currencies';
 import Header from './Components/Header';
-import { meterToMile, mileToMeter, cToF, fToC } from "./Utilities/calculations"
+import * as units from "./Utilities/units"
 
 function App() {
   const [conversionType, setConversionType] = useState("")
@@ -23,7 +23,15 @@ function App() {
                 </div>
       case "Length":
         return <div>
-                  <LengthForm/>
+                  <Form title="Length" units={units.length}/>
+              </div>
+      case "Area":
+          return <div>
+                    <Form title="Area" units={units.area}/>
+                </div>
+       case "Weight":
+        return <div>
+                  <Form title="Weight" units={units.weight}/>
               </div>
       case "Currencies":
         return <div>
@@ -41,14 +49,12 @@ function App() {
       <Header sendToParent={handleChange}>
         <p>Length</p>
         <p>Temperature</p>
+        <p>Area</p>
+        <p>Weight</p>
         <p>Currencies</p>
       </Header >
       <header className="App-header">
         {renderSwitch(conversionType)}
-        {/*<DropdownMenu sendToParent={handleChange}/>*/}
-        <p>
-          Goku on kuollut. Kauan eläkoon Goku.
-        </p>
       </header>
     </div>
   )

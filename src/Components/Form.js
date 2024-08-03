@@ -1,40 +1,52 @@
 import React, { useState } from "react";
-//import { cToF, fToC } from "../Utilities/calculations"
 
-export default function Form({title1, title2, func1, func2}) {
+export default function MyForm({title, units}) {
     const [value, setValue] = useState("")
-    const [tempType, setTempType] = useState(false)
+    const [firstSelection, setFirstSelection] = useState("")
+    const [lastSelection, setLastSelection] = useState("")
+
     const handleChange = e => {
-        setValue(e.target.value)
+        setValue(e.target.value)    
     }
-    
-    if (tempType === true) {
-        return (
-            <div>
-                <button onClick={() => setTempType(!tempType)}>Change  Type</button> 
-                <h1>{title1}</h1>
+
+    return (
+        <div>
+            <h1>{title}</h1>
+            <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
+                <h2>{firstSelection}</h2>
+                <button onClick={() => { setFirstSelection(lastSelection) ; setLastSelection(firstSelection) }}>{"<-->"}</button> 
+                <h2>{lastSelection}</h2>
+            </div>
+            
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                <h3>From: </h3>
+                <select name="firstSelection" 
+                        id="firstSelection"
+                        value={firstSelection}
+                        onChange={e => setFirstSelection(e.target.value)}>
+                            {Object.keys(units).map((unit) => (
+                                <option value={unit}>{unit}</option>
+                            ))}
+                </select>
+                <h3>To: </h3>
+                <select name="lastSelection" 
+                        id="lastSelection"
+                        value={lastSelection}
+                        onChange={e => setLastSelection(e.target.value)}>
+                            {Object.keys(units).filter(unit => unit !== firstSelection).map((unit) => (
+                                <option value={unit}>{unit}</option>
+                            ))}
+                </select>
+            </div>     
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
                 <form>
                     <label>
-                        {title1.split(" ")[0]}: <input type="text" value={value} onChange={handleChange}/>
+                        Values: <input type="text" value={value} onChange={handleChange}/>
                     </label>
                 </form>
-                <h1>{title1.split(" ")[2]}: {value !== "" ? func1(value) : ""}</h1>
+                <h3>Result: {value * (units[lastSelection] / units[firstSelection])}</h3>
             </div>
-        )
-    } else {
-        return (
-            <div>
-                <button onClick={() => setTempType(!tempType)}>Change Type</button> 
-                <h1>{title2}</h1>
-                <form>
-                    <label>
-                    {title2.split(" ")[0]}: <input type="text" value={value} onChange={handleChange}/>
-                    </label>
-                </form>
-                <h1>{title2.split(" ")[2]}: {value !== "" ? func2(value) : ""}</h1>
-            </div>
-        )
-    }
-    
+        </div>
+    )
   }
   
