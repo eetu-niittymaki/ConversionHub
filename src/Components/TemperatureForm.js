@@ -45,7 +45,7 @@ export default function TemperatureForm() {
 
     return (
         <div>
-            <h1>Temperature Units</h1>
+            <h1>Temperature</h1>
             <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
                 <h2>{firstSelection}</h2>
                 <button onClick={() => { setFirstSelection(lastSelection) ; setLastSelection(firstSelection) }}>{"<-->"}</button> 

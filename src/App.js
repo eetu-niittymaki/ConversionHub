@@ -5,6 +5,7 @@ import LengthForm from "./Components/LengthForm"
 import TemperatureForm from './Components/TemperatureForm';
 import DropdownMenu from "./Components/DropdownMenu"
 import Currencies from './Components/Currencies';
+import Binary from './Components/Binary';
 import Header from './Components/Header';
 import * as units from "./Utilities/units"
 
@@ -37,6 +38,10 @@ function App() {
         return <div>
                   <Currencies/>
               </div>
+      case "Binary":
+        return <div>
+                  <Binary/>
+              </div>
       default:
         return <div>
                 <h1>Choose conversion type</h1>
@@ -52,6 +57,7 @@ function App() {
         <p>Area</p>
         <p>Weight</p>
         <p>Currencies</p>
+        <p>Binary</p>
       </Header >
       <header className="App-header">
         {renderSwitch(conversionType)}

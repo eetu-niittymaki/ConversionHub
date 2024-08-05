@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 export default function MyForm({title, units}) {
     const [value, setValue] = useState("")
-    const [firstSelection, setFirstSelection] = useState("")
-    const [lastSelection, setLastSelection] = useState("")
+    const [firstSelection, setFirstSelection] = useState(Object.keys(units)[0])
+    const [lastSelection, setLastSelection] = useState(Object.keys(units)[1])
 
     const handleChange = e => {
         setValue(e.target.value)    
@@ -41,10 +41,10 @@ export default function MyForm({title, units}) {
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
                 <form>
                     <label>
-                        Values: <input type="text" value={value} onChange={handleChange}/>
+                        Value: <input type="text" value={value} onChange={handleChange}/>
                     </label>
                 </form>
-                <h3>Result: {value * (units[lastSelection] / units[firstSelection])}</h3>
+                <h3>Result: {value !== "" ? value * (units[lastSelection] / units[firstSelection]) : ""}</h3>
             </div>
         </div>
     )

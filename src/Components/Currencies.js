@@ -6,7 +6,7 @@ const  Currencies = () => {
     const [rates, setRates] = useState()
     const [ratesFetched, setRatesFetched] = useState(false);
     const [origCurrency, setOrigCurrency] = useState("USD")
-    const [finalCurrency, setFinalCurrency] = useState("USD")
+    const [finalCurrency, setFinalCurrency] = useState("EUR")
     let newAmount = useRef(0)
     let conversion = useRef(0)
 
@@ -38,7 +38,7 @@ const  Currencies = () => {
         }
     }
 
-    const calculateConversion = async () => {
+    const calculateConversion = () => {
         conversion.current = (rates[origCurrency] / rates[finalCurrency]) * newAmount.current
     }
 
@@ -53,7 +53,7 @@ const  Currencies = () => {
     useEffect(() => {
         setTimeout(() => {
             getRates()
-        }, 500)
+        }, 50)
     }, [])
 
     return(
