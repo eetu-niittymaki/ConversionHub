@@ -6,7 +6,7 @@ const Binary = () => {
 
     const binaryToString = (str) => {
         str = str.replace(/ /g,'')
-        str = str.replace(/.{8}/g, '$& ')
+        str = str.replace(/.{7}/g, '$& ')
         console.log(str)
         
         let newBinary = str.split(" ");
