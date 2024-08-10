@@ -7,6 +7,8 @@ const  Currencies = () => {
     const [ratesFetched, setRatesFetched] = useState(false);
     const [origCurrency, setOrigCurrency] = useState("USD")
     const [finalCurrency, setFinalCurrency] = useState("EUR")
+    let refOrigCurrency = useRef("USD")
+    let refFinCurrency = useRef("EUR")
     let newAmount = useRef(0)
     let conversion = useRef(0)
 
@@ -39,7 +41,7 @@ const  Currencies = () => {
     }
 
     const calculateConversion = () => {
-        conversion.current = (rates[origCurrency] / rates[finalCurrency]) * newAmount.current
+        conversion.current = (rates[refFinCurrency.current] / rates[refOrigCurrency.current]) * newAmount.current
     }
 
     useEffect(() => {
@@ -63,9 +65,11 @@ const  Currencies = () => {
                 <select name="origCurrency"
                         id="origCurrency"
                         value={origCurrency}
-                        onChange={(e) => { setOrigCurrency(e.target.value) ;  calculateConversion()}}>
+                        onChange={(e) => { setOrigCurrency(e.target.value) ; 
+                                            refOrigCurrency.current = e.target.value ; 
+                                            calculateConversion() }}>
                         {ratesFetched ? (
-                            Object.keys(rates).map((currency, index) => (
+                            Object.keys(rates).filter(currency => currency !== finalCurrency).map((currency, index) => (
                                 <option key={index} value={currency}>
                                     {currency}
                                 </option>
@@ -86,9 +90,11 @@ const  Currencies = () => {
                 <label>To:</label>
                 <select id="finalCurrency"
                         value={finalCurrency}
-                        onChange={(e) => { setFinalCurrency(e.target.value) ; calculateConversion() }}>
+                        onChange={(e) => { setFinalCurrency(e.target.value) ; 
+                                            refFinCurrency.current = e.target.value ; 
+                                            calculateConversion() }}>
                     {ratesFetched ? (
-                        Object.keys(rates).map((currency, index) => (
+                        Object.keys(rates).filter(currency => currency !== origCurrency).map((currency, index) => (
                             <option key={index} value={currency}>
                                 {currency}
                             </option>
