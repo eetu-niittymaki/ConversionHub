@@ -3,12 +3,12 @@ import axios from "axios";
 
 const  Currencies = () => {
     const [amount, setAmount] = useState(0)
-    const [rates, setRates] = useState()
+    const [rates, setRates] = useState(null)
     const [ratesFetched, setRatesFetched] = useState(false);
     const [origCurrency, setOrigCurrency] = useState("USD")
     const [finalCurrency, setFinalCurrency] = useState("EUR")
-    let refOrigCurrency = useRef("USD")
-    let refFinCurrency = useRef("EUR")
+    let origCurrencyRef = useRef("USD")
+    let finalCurrencyRef = useRef("EUR")
     let newAmount = useRef(0)
     let conversion = useRef(0)
 
@@ -34,30 +34,30 @@ const  Currencies = () => {
         if (ratesFetched === false) {
             const response = await axios.get(`https://v6.exchangerate-api.com/v6/${apiKeys[randKey()]}/latest/USD`)
             if (response.data.result === "success") {
-                setRates(response.data.conversion_rates)
+                let data = response.data.conversion_rates
+                setRates(data)
+                sessionStorage.setItem("rates", JSON.stringify(data))
                 setRatesFetched(true)
             }
         }
     }
 
-    const calculateConversion = () => {
-        conversion.current = (rates[refFinCurrency.current] / rates[refOrigCurrency.current]) * newAmount.current
+    const calculateConversion = async () => {
+        conversion.current = (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current]) * newAmount.current
     }
 
     useEffect(() => {
+        const sessionRates = sessionStorage.getItem("rates")
+        
+        sessionRates ? setRates(JSON.parse(sessionRates)) : getRates()
+
         const interval = setInterval(() => { 
             setRatesFetched(false)
             getRates()
-        }, 60000 * 60 * 16)
+        }, 60000 * 60 * 6)
         return () => clearInterval(interval)
     }, [])
-
-    useEffect(() => {
-        setTimeout(() => {
-            getRates()
-        }, 50)
-    }, [])
-
+    
     return(
         <div>
             <div>   
@@ -66,17 +66,13 @@ const  Currencies = () => {
                         id="origCurrency"
                         value={origCurrency}
                         onChange={(e) => { setOrigCurrency(e.target.value) ; 
-                                            refOrigCurrency.current = e.target.value ; 
+                                            origCurrencyRef.current = e.target.value ; 
                                             calculateConversion() }}>
-                        {ratesFetched ? (
-                            Object.keys(rates).filter(currency => currency !== finalCurrency).map((currency, index) => (
-                                <option key={index} value={currency}>
-                                    {currency}
-                                </option>
-                            ))
-                        ) : (
-                            <option defaultValue>USD</option>
-                        )}
+                        {rates && Object.keys(rates).filter(currency => currency !== finalCurrency).map((currency, index) => (
+                            <option key={index} value={currency}>
+                                {currency}
+                            </option>
+                        ))}
                 </select>
             </div>
             <div>
@@ -91,17 +87,13 @@ const  Currencies = () => {
                 <select id="finalCurrency"
                         value={finalCurrency}
                         onChange={(e) => { setFinalCurrency(e.target.value) ; 
-                                            refFinCurrency.current = e.target.value ; 
+                                            finalCurrencyRef.current = e.target.value ; 
                                             calculateConversion() }}>
-                    {ratesFetched ? (
-                        Object.keys(rates).filter(currency => currency !== origCurrency).map((currency, index) => (
+                    {rates &&  Object.keys(rates).filter(currency => currency !== origCurrency).map((currency, index) => (
                             <option key={index} value={currency}>
                                 {currency}
                             </option>
-                        ))
-                    ) : (
-                    <option defaultValue>EUR</option>
-                    )}
+                    ))}
                 </select>
             </div>
                 <h1>Conversion: {conversion.current}</h1>
