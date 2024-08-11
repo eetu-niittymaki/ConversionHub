@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import "./Binary.css"
 
 const Binary = () => {
     const [mode, setMode] = useState(false)
@@ -31,11 +32,23 @@ const Binary = () => {
         <div>
             <button onClick={() => setMode(!mode)}>Change Mode</button>
             {mode === false 
-            ? <p>Binary To Text</p>
+
+            ? <div>
+                <p>Binary To Text</p>
+                Value: <input type="text" value={value} onChange={(e) => setValue(e.target.value)}/>
+            </div>
             :
-            <p>Text To Binary</p>
+            <div>
+                <p>Text To Binary</p>
+                <div style={{display: "flex", flexDirection: "row"}}>
+                    <p>Value: <input type="text" value={value} onChange={(e) => setValue(e.target.value)}/></p>
+                    <img src="./clipboard.png" 
+                        alt="Clipboard" 
+                        onClick={() => {navigator.clipboard.writeText(stringToBinary(value))}}/>
+                </div>
+            </div>
             }
-            Value: <input type="text" value={value} onChange={(e) => setValue(e.target.value)}/>
+            
             <h3>Result: {mode === false ? binaryToString(value) : stringToBinary(value)}</h3>
         </div>
     )

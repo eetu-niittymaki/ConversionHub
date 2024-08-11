@@ -1,0 +1,11 @@
+img {
+    width: 5vh;
+    height:5vh
+}
+
+img:hover {
+    border-radius: 10px;
+    border-color: white;
+    color: white;
+    background: white;
+}
