@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, } from "react"
-import Form from "./Components/Form"
+import UnitForm from "./Components/UnitForm"
 import LengthForm from "./Components/LengthForm"
 import TemperatureForm from './Components/TemperatureForm';
 import DropdownMenu from "./Components/DropdownMenu"
@@ -19,29 +19,17 @@ function App() {
   const renderSwitch = (param) => {
     switch(param) {
       case "Temperature":
-        return <div>
-                  <TemperatureForm/>
-                </div>
+        return <TemperatureForm/>
       case "Length":
-        return <div>
-                  <Form title="Length" units={units.length}/>
-              </div>
+        return <UnitForm title="Length" units={units.length}/>
       case "Area":
-          return <div>
-                    <Form title="Area" units={units.area}/>
-                </div>
+          return <UnitForm title="Area" units={units.area}/>
        case "Weight":
-        return <div>
-                  <Form title="Weight" units={units.weight}/>
-              </div>
+        return <UnitForm title="Weight" units={units.weight}/>
       case "Currencies":
-        return <div>
-                  <Currencies/>
-              </div>
+        return <Currencies/>
       case "Binary":
-        return <div>
-                  <Binary/>
-              </div>
+        return <Binary/>
       default:
         return <div>
                 <h1>Choose conversion type</h1>
@@ -53,15 +41,15 @@ function App() {
     <div className="App">
       <Header sendToParent={handleChange}>
         <p>Length</p>
-        <p>Temperature</p>
         <p>Area</p>
         <p>Weight</p>
+        <p>Temperature</p>
         <p>Currencies</p>
         <p>Binary</p>
       </Header >
-      <header className="App-header">
+      <div className="App-header">
         {renderSwitch(conversionType)}
-      </header>
+      </div>
     </div>
   )
 }
