@@ -32,7 +32,6 @@ const Binary = () => {
         <div>
             <button onClick={() => setMode(!mode)}>Change Mode</button>
             {mode === false 
-
             ? <div>
                 <p>Binary To Text</p>
                 Value: <input type="text" value={value} onChange={(e) => setValue(e.target.value)}/>
@@ -48,7 +47,6 @@ const Binary = () => {
                 </div>
             </div>
             }
-            
             <h3>Result: {mode === false ? binaryToString(value) : stringToBinary(value)}</h3>
         </div>
     )

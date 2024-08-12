@@ -9,3 +9,7 @@ img:hover {
     color: white;
     background: white;
 }
+
+img:active {
+    background: grey;
+}

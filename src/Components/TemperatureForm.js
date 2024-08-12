@@ -58,7 +58,7 @@ export default function TemperatureForm() {
                         id="firstSelection"
                         value={firstSelection}
                         onChange={e => setFirstSelection(e.target.value)}>   
-                        {tempUnits.map((unit) => (
+                        {tempUnits.filter(unit => unit !== lastSelection).map((unit) => (
                              <option value={unit}>{unit}</option>
                         ))}
                 </select>

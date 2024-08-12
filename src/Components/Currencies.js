@@ -35,8 +35,10 @@ const  Currencies = () => {
             const response = await axios.get(`https://v6.exchangerate-api.com/v6/${apiKeys[randKey()]}/latest/USD`)
             if (response.data.result === "success") {
                 let data = response.data.conversion_rates
+                let date = Date.now()
+                const obj = {"rates": data, "timestamp": date}
                 setRates(data)
-                sessionStorage.setItem("rates", JSON.stringify(data))
+                sessionStorage.setItem("rates", JSON.stringify(obj))
                 setRatesFetched(true)
             }
         }
@@ -47,15 +49,17 @@ const  Currencies = () => {
     }
 
     useEffect(() => {
-        const sessionRates = sessionStorage.getItem("rates")
-        
-        sessionRates ? setRates(JSON.parse(sessionRates)) : getRates()
+        const sessionRates = JSON.parse(sessionStorage.getItem("rates"))
 
-        const interval = setInterval(() => { 
-            setRatesFetched(false)
+        if (sessionRates) {
+            if (Date.now() - sessionRates.timestamp >= 60000 * 60 * 6) {
+                setRatesFetched(false)
+                getRates()
+            }
+            setRates(sessionRates.rates)
+        } else {
             getRates()
-        }, 60000 * 60 * 6)
-        return () => clearInterval(interval)
+        }
     }, [])
     
     return(
