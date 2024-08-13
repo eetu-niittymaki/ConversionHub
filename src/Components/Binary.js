@@ -7,30 +7,37 @@ const Binary = () => {
 
     const binaryToString = (str) => {
         str = str.replace(/ /g,'')
-        str = str.replace(/.{7}/g, '$& ')
-        console.log(str)
+        str = str.replace(/.{8}/g, '$& ')
         
-        let newBinary = str.split(" ");
-        let binaryCode = [];
+        let newBinary = str.split(" ")
+        let binaryCode = []
     
         for (let i = 0; i < newBinary.length; i++) {
-            binaryCode.push(String.fromCharCode(parseInt(newBinary[i], 2)));
+            binaryCode.push(String.fromCharCode(parseInt(newBinary[i], 2)))
         }
         
-        return binaryCode.join("");
+        return binaryCode.join("")
     }
 
     const stringToBinary = (str) => {
-        let output = ""
+        let result = ''
+        
         for (let i = 0; i < str.length; i++) {
-            output += str[i].charCodeAt(0).toString(2) + " " 
+            const char = str.charCodeAt(i)
+            let binary = ''
+            
+            for (let j = 7; j >= 0; j--) {
+                binary += (char >> j) & 1
+            }
+            
+            result += binary + ' '
         }
-        return output
+        return result.trim()
     }
 
     return(
         <div>
-            <button onClick={() => setMode(!mode)}>Change Mode</button>
+            <button onClick={() => {setMode(!mode) ; setValue("")}}>Change Mode</button>
             {mode === false 
             ? <div>
                 <p>Binary To Text</p>

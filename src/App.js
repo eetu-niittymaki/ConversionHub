@@ -47,7 +47,7 @@ function App() {
         <p>Currencies</p>
         <p>Binary</p>
       </Header >
-      <div className="App-header">
+      <div className="App-body">
         {renderSwitch(conversionType)}
       </div>
     </div>
