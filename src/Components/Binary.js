@@ -41,7 +41,7 @@ const Binary = () => {
             ? 
             <div>
                 <h3>Text To Binary</h3>
-                <div style={{position: "fixed", display:"flex", flexDirection:"row", marginBottom: "5%"}}>
+                <div style={{position: "relative", display:"flex", flexDirection:"row", marginBottom: "5%", justifyContent: "center"}}>
                     <input type="text" value={value} 
                             style={{minHeight:"5vh", minWidht:"15vh"}}
                             onChange={(e) => setValue(e.target.value)}/>
@@ -58,7 +58,7 @@ const Binary = () => {
                         onChange={(e) => setValue(e.target.value)}/>
             </div>
             }
-            <div style={{ dislpay: "flex", flexWrap:"wrap", width:"50%", bottom:"20%", position:"fixed", left:"25%", justifyContent:"center"}}>
+            <div style={{ width:"50%", inlineSize: "90vh", overflowWrap:"break-word",position:"relative",  justifyContent:"center"}}>
                 <h3>
                     {mode === false ? stringToBinary(value) : binaryToString(value)}
                 </h3>
