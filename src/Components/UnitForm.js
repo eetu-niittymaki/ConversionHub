@@ -18,45 +18,43 @@ export default function UnitForm({title, units}) {
         <div>
             <h1>{title}</h1>
             <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
-                <h2>{firstSelection}</h2>
-                <button onClick={() => { setFirstSelection(lastSelection) ;
+                <h2 style={{position: "relative", marginRight: "10vh" }}>{firstSelection}</h2>
+                <button style={{position: "absolute",}}
+                        onClick={() => { setFirstSelection(lastSelection) ;
                                          setLastSelection(firstSelection)}}>
-                    {"<-->"}
+                    <img src="./arrow.png" alt="Change"/>
                 </button> 
-                <h2>{lastSelection}</h2>
+                <h2 style={{position: "relative", marginLeft: "10vh" }}>{lastSelection}</h2>
             </div>
-            
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
-                <h3>From: </h3>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%"}}>
                 <select name="firstSelection" 
                         id="firstSelection"
                         value={firstSelection}
+                        style={{marginRight: "5vh", marginBottom: "2vh", minWidth:"15vh", minHeight:"5vh" }}
                         onChange={e => setFirstSelection(e.target.value)}>
-                            {Object.keys(units).filter(unit => unit !== lastSelection).map((unit) => (
-                                <option value={unit}>{unit}</option>
+                            {Object.keys(units).filter(unit => unit !== lastSelection).map((unit, index) => (
+                                <option key={index} value={unit}>{unit}</option>
                             ))}
                 </select>
+                
                 <h3>To: </h3>
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
+                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh"}}
                         onChange={e => setLastSelection(e.target.value)}>
-                            {Object.keys(units).filter(unit => unit !== firstSelection).map((unit) => (
-                                <option value={unit}>
+                            {Object.keys(units).filter(unit => unit !== firstSelection).map((unit, index) => (
+                                <option key={index} value={unit}>
                                     {unit}
                                     {value !== 0 ? `(${value * (units[unit] / units[firstSelection])})`: ""}
                                 </option>
                             ))}
                 </select>
             </div>     
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
                 <form>
-                    <label>
-                        Value: <input type="number" value={value} onChange={handleChange}/>
-                    </label>
+                    <input type="number" value={value} onChange={handleChange} style={{minHeight:"5vh"}}/>
                 </form>
-                <h3>Result: {value !== 0 ? value * (units[lastSelection] / units[firstSelection]) : ""}</h3>
-            </div>
+            <h3>Result: {value !== 0 ? value * (units[lastSelection] / units[firstSelection]) : ""}</h3>
         </div>
     )
   }
