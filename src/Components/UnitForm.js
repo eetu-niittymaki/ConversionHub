@@ -18,7 +18,8 @@ export default function UnitForm({title, units}) {
         <div>
             <h1>{title}</h1>
             <form>
-                <input type="number" value={value} onChange={handleChange} style={{minHeight:"5vh", marginBottom:"10%"}}/>
+                <input type="number" value={value} onChange={handleChange} 
+                        style={{minHeight:"5vh", marginBottom:"10%"}}/>
             </form>
             <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
                 <h2 style={{position: "relative", marginRight: "10vh" }}>{firstSelection}</h2>
@@ -33,7 +34,7 @@ export default function UnitForm({title, units}) {
                 <select name="firstSelection" 
                         id="firstSelection"
                         value={firstSelection}
-                        style={{marginRight: "5vh", marginBottom: "2vh", minWidth:"15vh", minHeight:"5vh" }}
+                        style={{marginRight: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold" }}
                         onChange={e => setFirstSelection(e.target.value)}>
                             {Object.keys(units).filter(unit => unit !== lastSelection).map((unit, index) => (
                                 <option key={index} value={unit}>{unit}</option>
@@ -44,7 +45,7 @@ export default function UnitForm({title, units}) {
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
-                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh"}}
+                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold"}}
                         onChange={e => setLastSelection(e.target.value)}>
                             {Object.keys(units).filter(unit => unit !== firstSelection).map((unit, index) => (
                                 <option key={index} value={unit}>

@@ -2,15 +2,15 @@ import React, { useState, useEffect, useRef } from "react"
 import axios from "axios";
 
 const  Currencies = () => {
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState()
     const [rates, setRates] = useState(null)
     const [ratesFetched, setRatesFetched] = useState(false);
     const [origCurrency, setOrigCurrency] = useState("USD")
     const [finalCurrency, setFinalCurrency] = useState("EUR")
     let origCurrencyRef = useRef("USD")
     let finalCurrencyRef = useRef("EUR")
-    let newAmount = useRef(0)
-    let conversion = useRef(0)
+    let newAmount = useRef()
+    let conversion = useRef()
 
     const apiKeys = [ 
                 process.env.REACT_APP_API_KEY1, 
@@ -55,41 +55,44 @@ const  Currencies = () => {
             if (Date.now() - sessionRates.timestamp >= 60000 * 60 * 6) {
                 setRatesFetched(false)
                 getRates()
+            } else {
+                setRates(sessionRates.rates)
             }
-            setRates(sessionRates.rates)
         } else {
             getRates()
         }
     }, [])
+
+    console.log(amount)
     
     return(
         <div>
             <div>   
-                <label>From: </label>
+                <h1>Currencies</h1>
+                <div>
+                    <input type="number" 
+                        value={amount} 
+                        id="amount"
+                        style={{minHeight:"5vh", marginBottom:"10%"}}
+                        onChange={(e) => handleChange(e)}/>
+                </div>
                 <select name="origCurrency"
                         id="origCurrency"
                         value={origCurrency}
+                        style={{marginRight: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold" }}
                         onChange={(e) => { setOrigCurrency(e.target.value) ; 
                                             origCurrencyRef.current = e.target.value ; 
                                             calculateConversion() }}>
                         {rates && Object.keys(rates).filter(currency => currency !== finalCurrency).map((currency, index) => (
-                            <option key={index} value={currency}>
+                            <option key={index} value={currency} >
                                 {currency}
                             </option>
                         ))}
                 </select>
-            </div>
-            <div>
-                <label>Amount: </label>
-                <input type="number" 
-                       value={amount} 
-                       id="amount"
-                       onChange={(e) => handleChange(e)}/>
-            </div>
-            <div>
                 <label>To:</label>
                 <select id="finalCurrency"
                         value={finalCurrency}
+                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold"}}
                         onChange={(e) => { setFinalCurrency(e.target.value) ; 
                                             finalCurrencyRef.current = e.target.value ; 
                                             calculateConversion() }}>
@@ -100,10 +103,9 @@ const  Currencies = () => {
                     ))}
                 </select>
             </div>
-                <h1>Conversion: {conversion.current}</h1>
+                <h1>{(amount) ? `${amount} ${origCurrency} = ${conversion.current} ${finalCurrency}` : ""}</h1>
         </div>
     )
-
 }
 
 export default Currencies
