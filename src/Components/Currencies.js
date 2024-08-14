@@ -38,7 +38,7 @@ const  Currencies = () => {
                 let date = Date.now()
                 const obj = {"rates": data, "timestamp": date}
                 setRates(data)
-                sessionStorage.setItem("rates", JSON.stringify(obj))
+                localStorage.setItem("rates", JSON.stringify(obj))
                 setRatesFetched(true)
             }
         }
@@ -49,14 +49,14 @@ const  Currencies = () => {
     }
 
     useEffect(() => {
-        const sessionRates = JSON.parse(sessionStorage.getItem("rates"))
+        const localRates = JSON.parse(localStorage.getItem("rates"))
 
-        if (sessionRates) {
-            if (Date.now() - sessionRates.timestamp >= 60000 * 60 * 6) {
+        if (localRates) {
+            if (Date.now() - localRates.timestamp >= 60000 * 60 * 6) {
                 setRatesFetched(false)
                 getRates()
             } else {
-                setRates(sessionRates.rates)
+                setRates(localRates.rates)
             }
         } else {
             getRates()
