@@ -17,6 +17,9 @@ export default function UnitForm({title, units}) {
     return (
         <div>
             <h1>{title}</h1>
+            <form>
+                <input type="number" value={value} onChange={handleChange} style={{minHeight:"5vh", marginBottom:"10%"}}/>
+            </form>
             <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
                 <h2 style={{position: "relative", marginRight: "10vh" }}>{firstSelection}</h2>
                 <button style={{position: "absolute",}}
@@ -51,10 +54,6 @@ export default function UnitForm({title, units}) {
                             ))}
                 </select>
             </div>     
-                <form>
-                    <input type="number" value={value} onChange={handleChange} style={{minHeight:"5vh"}}/>
-                </form>
-            <h3>Result: {value !== 0 ? value * (units[lastSelection] / units[firstSelection]) : ""}</h3>
         </div>
     )
   }
