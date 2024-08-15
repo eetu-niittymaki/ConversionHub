@@ -6,4 +6,4 @@ Switch between different units, temperatures, currencies, binary etc...
 
 ## https://eetu-niittymaki.github.io/ConversionHub/
 
-![alt text](https://i.postimg.cc/rsrBvCQH/temp1.png)
+![alt text](https://i.postimg.cc/NfpH1QBg/img.png)

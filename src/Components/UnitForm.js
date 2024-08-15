@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function UnitForm({title, units}) {
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState()
     const [firstSelection, setFirstSelection] = useState(Object.keys(units)[0])
     const [lastSelection, setLastSelection] = useState(Object.keys(units)[1])
 
@@ -50,7 +50,7 @@ export default function UnitForm({title, units}) {
                             {Object.keys(units).filter(unit => unit !== firstSelection).map((unit, index) => (
                                 <option key={index} value={unit}>
                                     {unit}
-                                    {value !== 0 ? `(${value * (units[unit] / units[firstSelection])})`: ""}
+                                    {value ? `(${value * (units[unit] / units[firstSelection])})`: ""}
                                 </option>
                             ))}
                 </select>

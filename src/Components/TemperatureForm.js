@@ -47,7 +47,7 @@ export default function TemperatureForm() {
         <div>
             <h1>Temperature</h1>
             <form>
-                <input type="text" value={amount} onChange={handleChange}
+                <input type="number" value={amount} onChange={handleChange}
                         style={{minHeight:"5vh", marginBottom:"10%"}}/>
             </form>
             <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
@@ -75,8 +75,8 @@ export default function TemperatureForm() {
                         value={lastSelection}
                         style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold"}}
                         onChange={e => setLastSelection(e.target.value)}>
-                    {tempUnits.filter(unit => unit !== firstSelection).map((unit) => (
-                             <option value={unit}>{unit}</option>
+                        {tempUnits.filter(unit => unit !== firstSelection).map((unit) => (
+                            <option value={unit}>{unit}</option>
                         ))}
                 </select>
             </div>     
