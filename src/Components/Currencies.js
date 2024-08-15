@@ -62,8 +62,6 @@ const  Currencies = () => {
             getRates()
         }
     }, [])
-
-    console.log(amount)
     
     return(
         <div>
@@ -76,6 +74,16 @@ const  Currencies = () => {
                         style={{minHeight:"5vh", marginBottom:"10%"}}
                         onChange={(e) => handleChange(e)}/>
                 </div>
+                <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
+                <button
+                        onClick={() => { setOrigCurrency(finalCurrency) ;
+                                         setFinalCurrency(origCurrency) ;
+                                         origCurrencyRef.current = finalCurrency ;
+                                         finalCurrencyRef.current = origCurrency ;
+                                         calculateConversion()}}>
+                    <img src="./arrow.png" alt="Change"/>
+                </button> 
+            </div>
                 <select name="origCurrency"
                         id="origCurrency"
                         value={origCurrency}
