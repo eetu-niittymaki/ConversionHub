@@ -1,45 +1,18 @@
 import React, { useState } from "react";
 
-
 export default function TemperatureForm() {
     const [amount, setAmount] = useState("")
     const [firstSelection, setFirstSelection] = useState("C")
     const [lastSelection, setLastSelection] = useState("F")
-    
-    const handleChange = e => {
-        setAmount(e.target.value)    
-    }
-
     const tempUnits = ["C", "F", "K"]
-
+    
     const calculateTemp = () => {
-        switch(firstSelection) {
-            case "C":
-                if (lastSelection === "F") {
-                    return amount * 1.8 + 32 + " F"
-                } else if (lastSelection === "K") {
-                    return amount + 273.15 + " K"
-                } else {
-                    return amount
-                }
-            case "F":
-                if (lastSelection === "C") {
-                    return (amount - 32) / 1.8 + " C"
-                } else if (lastSelection === "K") {
-                    return (amount + 459.67) * 5 / 9 + " K"
-                } else {
-                    return amount
-                }
-            case "K":
-                if (lastSelection === "C") {
-                    return amount - 273.15 + " C" 
-                } else if (lastSelection === "F") {
-                    return amount * 9 / 5 - 459.67 + " F"
-                } else {
-                    return amount
-                }
-            default:
-                return amount
+        if (firstSelection === "C") {
+            return (lastSelection === "F") ? (amount * (1.8 + 32) + " F") : (amount + 273.15 + " K")
+        } else if (firstSelection === "F") {
+            return  (lastSelection === "C") ? ((amount - 32) / 1.8 + " C") : ((amount + 459.67) * 5 / 9 + " K")
+        } else {
+            return (lastSelection === "C") ? (amount - 273.15 + " C" ) : (amount * 9 / 5 - 459.67 + " F")
         }
     }
 
@@ -47,7 +20,9 @@ export default function TemperatureForm() {
         <div>
             <h1>Temperature</h1>
             <form>
-                <input type="number" value={amount} onChange={handleChange}
+                <input type="number" 
+                        value={amount} 
+                        onChange={e => setAmount(e.target.value)}
                         style={{minHeight:"5vh", marginBottom:"10%"}}/>
             </form>
             <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
@@ -81,7 +56,7 @@ export default function TemperatureForm() {
                 </select>
             </div>     
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
-                <h3>{amount === "" ? "" : calculateTemp()}</h3>
+                <h3>{amount ? calculateTemp() : ""}</h3>
             </div>
         </div>
     )
