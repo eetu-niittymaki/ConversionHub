@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 
 export default function TemperatureForm() {
-    const [amount, setAmount] = useState("")
+    const [amount, setAmount] = useState()
     const [firstSelection, setFirstSelection] = useState("C")
     const [lastSelection, setLastSelection] = useState("F")
     const tempUnits = ["C", "F", "K"]
+
+    const handleChange = (e) => {
+        setAmount(Number(e.target.value))
+    }
+
+    const roundNum = (num) => {
+        return (Math.round(num * 100) / 100).toFixed(2)
+    }
     
-    const calculateTemp = () => {
+    const calculateTemp = (unit) => {
         if (firstSelection === "C") {
-            return (lastSelection === "F") ? (amount * (1.8 + 32) + " F") : (amount + 273.15 + " K")
+            return (unit === "F") ? (roundNum(amount * (1.8 + 32)) + " F") : (roundNum(amount + 273.15) + " K")
         } else if (firstSelection === "F") {
-            return  (lastSelection === "C") ? ((amount - 32) / 1.8 + " C") : ((amount + 459.67) * 5 / 9 + " K")
+            return  (unit === "C") ? (roundNum((amount - 32) / 1.8)) + " C" : ((roundNum((amount + 459.67) * 5 / 9)) + " K")
         } else {
-            return (lastSelection === "C") ? (amount - 273.15 + " C" ) : (amount * 9 / 5 - 459.67 + " F")
+            return (unit === "C") ? (roundNum(amount - 273.1) + " C" ) : (roundNum(amount * 9 / 5 - 459.67) + " F")
         }
     }
 
@@ -22,41 +30,45 @@ export default function TemperatureForm() {
             <form>
                 <input type="number" 
                         value={amount} 
-                        onChange={e => setAmount(e.target.value)}
+                        id="amount"
+                        onChange={(e) => handleChange(e)}
                         style={{minHeight:"5vh", marginBottom:"10%"}}/>
             </form>
             <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
-                <h2 style={{position: "relative", marginRight: "10vh" }}> {firstSelection}</h2>
-                <button onClick={() => { setFirstSelection(lastSelection) ; setLastSelection(firstSelection) }}
-                        style={{position: "absolute",}}>
-                    <img src="arrow.png" alt="Change"/> 
-                </button> 
-                <h2>{lastSelection}</h2>
+                
             </div>
             
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
                 <select name="firstSelection" 
                         id="firstSelection"
                         value={firstSelection}
-                        style={{marginRight: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold"}}
+                        className="select"
+                        style={{marginRight: "5vh", minWidth:"15vh", minHeight:"5vh"}}
                         onChange={e => setFirstSelection(e.target.value)}>   
                         {tempUnits.filter(unit => unit !== lastSelection).map((unit) => (
-                             <option value={unit}>{unit}</option>
+                             <option value={unit}>
+                                {amount ? (unit === firstSelection ? amount : "") : ""} {unit}
+                            </option>
                         ))}
                 </select>
-                <h3>To: </h3>
+                <button onClick={() => { setFirstSelection(lastSelection) ; setLastSelection(firstSelection) }}
+                        style={{position: "absolute",}}>
+                    <img src="arrow.png" alt="Change"/> 
+                </button> 
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
-                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold"}}
+                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh"}}
+                        className="select"
                         onChange={e => setLastSelection(e.target.value)}>
                         {tempUnits.filter(unit => unit !== firstSelection).map((unit) => (
-                            <option value={unit}>{unit}</option>
+                            <option value={unit}>
+                               {amount ? calculateTemp(unit) : unit}
+                                </option>
                         ))}
                 </select>
             </div>     
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
-                <h3>{amount ? calculateTemp() : ""}</h3>
             </div>
         </div>
     )

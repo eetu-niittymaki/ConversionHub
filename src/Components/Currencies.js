@@ -24,9 +24,14 @@ const  Currencies = () => {
         return Math.floor(Math.random() * apiKeys.length)
     }
 
+    const roundNum = (num) => {
+        return (Math.round(num * 100) / 100).toFixed(2)
+    }
+
     const handleChange = e => {
-        setAmount(e.target.value)
-        newAmount.current = e.target.value
+        let value = Number(e.target.value)
+        setAmount(value)
+        newAmount.current =value
         calculateConversion()
     }
 
@@ -66,15 +71,27 @@ const  Currencies = () => {
     return(
         <div>
             <div>   
-                <h1>Currencies</h1>
-                <div>
-                    <input type="number" 
-                        value={amount} 
-                        id="amount"
-                        style={{minHeight:"5vh", marginBottom:"10%"}}
-                        onChange={(e) => handleChange(e)}/>
-                </div>
-                <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
+            <h1>Currencies</h1>
+                <input type="number" 
+                    value={amount} 
+                    id="amount"
+                    style={{minHeight:"5vh", marginBottom:"10%"}}
+                    onChange={(e) => handleChange(e)}/>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%"}}>
+                <select name="origCurrency"
+                        id="origCurrency"
+                        value={origCurrency}
+                        style={{marginRight: "5vh", minWidth:"15vh", minHeight:"5vh" }}
+                        className="select"
+                        onChange={(e) => { setOrigCurrency(e.target.value) ; 
+                                            origCurrencyRef.current = e.target.value ; 
+                                            calculateConversion() }}>
+                        {rates && Object.keys(rates).filter(currency => currency !== finalCurrency).map((currency, index) => (
+                            <option key={index} value={currency} >
+                               {amount ? (currency === origCurrency ? amount : "") : ""} {currency} 
+                            </option>
+                        ))}
+                </select>
                 <button
                         onClick={() => { setOrigCurrency(finalCurrency) ;
                                          setFinalCurrency(origCurrency) ;
@@ -83,35 +100,22 @@ const  Currencies = () => {
                                          calculateConversion()}}>
                     <img src="./arrow.png" alt="Change"/>
                 </button> 
-            </div>
-                <select name="origCurrency"
-                        id="origCurrency"
-                        value={origCurrency}
-                        style={{marginRight: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold" }}
-                        onChange={(e) => { setOrigCurrency(e.target.value) ; 
-                                            origCurrencyRef.current = e.target.value ; 
-                                            calculateConversion() }}>
-                        {rates && Object.keys(rates).filter(currency => currency !== finalCurrency).map((currency, index) => (
-                            <option key={index} value={currency} >
-                                {currency}
-                            </option>
-                        ))}
-                </select>
-                <label>To:</label>
                 <select id="finalCurrency"
                         value={finalCurrency}
-                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold"}}
+                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh"}}
+                        className="select"
                         onChange={(e) => { setFinalCurrency(e.target.value) ; 
                                             finalCurrencyRef.current = e.target.value ; 
                                             calculateConversion() }}>
                     {rates &&  Object.keys(rates).filter(currency => currency !== origCurrency).map((currency, index) => (
                             <option key={index} value={currency}>
-                                {currency}
+                                {currency} {amount ? roundNum((rates[currency] / rates[origCurrencyRef.current]) * newAmount.current) : ""} 
                             </option>
                     ))}
                 </select>
             </div>
-                <h1>{(amount) ? `${amount} ${origCurrency} = ${conversion.current} ${finalCurrency}` : ""}</h1>
+            </div>
+                {/*<h1>{(amount) ? `${amount} ${origCurrency} = ${conversion.current} ${finalCurrency}` : ""}</h1>*/}
         </div>
     )
 }

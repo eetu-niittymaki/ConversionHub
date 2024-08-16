@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./UnitForm.css"
 
 export default function UnitForm({title, units}) {
     const [value, setValue] = useState()
@@ -21,31 +22,29 @@ export default function UnitForm({title, units}) {
                 <input type="number" value={value} onChange={handleChange} 
                         style={{minHeight:"5vh", marginBottom:"10%"}}/>
             </form>
-            <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
-                <h2 style={{position: "relative", marginRight: "10vh" }}>{firstSelection}</h2>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%"}}>
+                <select name="firstSelection" 
+                        id="firstSelection"
+                        value={firstSelection}
+                        style={{marginRight: "5vh"}}
+                        className="select"
+                        onChange={e => setFirstSelection(e.target.value)}>
+                            {Object.keys(units).filter(unit => unit !== lastSelection).map((unit, index) => (
+                                <option key={index} value={unit}>
+                                   {value ? (unit === firstSelection ? value : "") : ""} {unit}
+                                </option>
+                            ))}
+                </select>
                 <button style={{position: "absolute",}}
                         onClick={() => { setFirstSelection(lastSelection) ;
                                          setLastSelection(firstSelection)}}>
                     <img src="./arrow.png" alt="Change"/>
                 </button> 
-                <h2 style={{position: "relative", marginLeft: "10vh" }}>{lastSelection}</h2>
-            </div>
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%"}}>
-                <select name="firstSelection" 
-                        id="firstSelection"
-                        value={firstSelection}
-                        style={{marginRight: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold" }}
-                        onChange={e => setFirstSelection(e.target.value)}>
-                            {Object.keys(units).filter(unit => unit !== lastSelection).map((unit, index) => (
-                                <option key={index} value={unit}>{unit}</option>
-                            ))}
-                </select>
-                
-                <h3>To: </h3>
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
-                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh", fontWeight:"bold"}}
+                        style={{marginLeft: "5vh"}}
+                        className="select"
                         onChange={e => setLastSelection(e.target.value)}>
                             {Object.keys(units).filter(unit => unit !== firstSelection).map((unit, index) => (
                                 <option key={index} value={unit}>
