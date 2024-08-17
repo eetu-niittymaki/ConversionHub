@@ -7,7 +7,7 @@ export default function TemperatureForm() {
     const tempUnits = ["C", "F", "K"]
 
     const handleChange = (e) => {
-        setAmount(Number(e.target.value))
+        setAmount(e.target.value)
     }
 
     const roundNum = (num) => {
@@ -16,11 +16,11 @@ export default function TemperatureForm() {
     
     const calculateTemp = (unit) => {
         if (firstSelection === "C") {
-            return (unit === "F") ? (roundNum(amount * (1.8 + 32)) + " F") : (roundNum(amount + 273.15) + " K")
+            return (unit === "F") ? (roundNum(amount * (1.8 + 32))) : (roundNum(amount + 273.15))
         } else if (firstSelection === "F") {
-            return  (unit === "C") ? (roundNum((amount - 32) / 1.8)) + " C" : ((roundNum((amount + 459.67) * 5 / 9)) + " K")
+            return  (unit === "C") ? (roundNum((amount - 32) / 1.8)) : ((roundNum((amount + 459.67) * 5 / 9)))
         } else {
-            return (unit === "C") ? (roundNum(amount - 273.1) + " C" ) : (roundNum(amount * 9 / 5 - 459.67) + " F")
+            return (unit === "C") ? (roundNum(amount - 273.1) ) : (roundNum(amount * 9 / 5 - 459.67))
         }
     }
 
@@ -29,15 +29,14 @@ export default function TemperatureForm() {
             <h1>Temperature</h1>
             <form>
                 <input type="number" 
-                        value={amount} 
-                        id="amount"
-                        onChange={(e) => handleChange(e)}
-                        style={{minHeight:"5vh", marginBottom:"10%"}}/>
+                    value={amount} 
+                    name="amount"
+                    id="amount"
+                    placeHolder="Temperature"
+                    onChange={(e) => handleChange(e)}
+                    style={{minHeight:"5vh", marginBottom:"10%"}}/>
+                <label for="amount" className="formLabel">Temperature</label>
             </form>
-            <div style={{display: "flex", flexDirection:"row", justifyContent: "center"}}>
-                
-            </div>
-            
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
                 <select name="firstSelection" 
                         id="firstSelection"
@@ -51,9 +50,10 @@ export default function TemperatureForm() {
                             </option>
                         ))}
                 </select>
-                <button onClick={() => { setFirstSelection(lastSelection) ; setLastSelection(firstSelection) }}
+                <button onClick={() => { setFirstSelection(lastSelection) ; 
+                                         setLastSelection(firstSelection) }}
                         style={{position: "absolute",}}>
-                    <img src="arrow.png" alt="Change"/> 
+                    <img src={process.env.PUBLIC_URL + "/images/arrow.jpg"} alt="Change"/> 
                 </button> 
                 <select name="lastSelection" 
                         id="lastSelection"
@@ -63,7 +63,7 @@ export default function TemperatureForm() {
                         onChange={e => setLastSelection(e.target.value)}>
                         {tempUnits.filter(unit => unit !== firstSelection).map((unit) => (
                             <option value={unit}>
-                               {amount ? calculateTemp(unit) : unit}
+                               {unit} {amount ? calculateTemp(unit) : ""}
                                 </option>
                         ))}
                 </select>

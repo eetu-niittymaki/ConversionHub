@@ -6,8 +6,8 @@ const Binary = () => {
     const [value, setValue] = useState("")
 
     const binaryToString = (str) => {
-        str = str.replace(/ /g,'') // Remove all whitespaces
-        str = str.replace(/.{8}/g, '$& ') // Add whitespace every 8 characters
+        str = str.replace(/ /g,"") // Remove all whitespaces
+        str = str.replace(/.{8}/g, "$& ") // Add whitespace every 8 characters
         
         let newBinary = str.split(" ")
         let binaryCode = []
@@ -20,15 +20,15 @@ const Binary = () => {
     }
 
     const stringToBinary = (str) => {
-        let result = ''
+        let result = ""
 
         for (let i = 0; i < str.length; i++) {
             const char = str.charCodeAt(i)
-            let binary = ''
+            let binary = ""
             for (let j = 7; j >= 0; j--) {
                 binary += (char >> j) & 1
             }
-            result += binary + ' '
+            result += binary + " "
         }
         return result.trim()
     }
@@ -42,10 +42,16 @@ const Binary = () => {
             <div>
                 <h3>Text To Binary</h3>
                 <div style={{position: "relative", display:"flex", flexDirection:"row", marginBottom: "5%", justifyContent: "center"}}>
-                    <input type="text" value={value} 
-                            style={{minHeight:"5vh", minWidht:"15vh"}}
-                            onChange={(e) => setValue(e.target.value)}/>
-                    <img src="./clipboard.png" 
+                    <form>
+                        <input type="text" 
+                                value={value} 
+                                name="value"
+                                placeholder="Text"
+                                style={{minHeight:"5vh", minWidht:"15vh"}}
+                                onChange={(e) => setValue(e.target.value)}/>
+                        <label for="value" className="formLabel">Text</label>
+                    </form>
+                    <img src={process.env.PUBLIC_URL + "/images/clipboard.png"} 
                         alt="Clipboard" 
                         onClick={() => {navigator.clipboard.writeText(stringToBinary(value))}}/>
                 </div>
@@ -53,9 +59,15 @@ const Binary = () => {
             :
             <div>
                 <h3>Binary To Text</h3>
-                <input type="text" value={value} 
-                        style={{minHeight:"5vh", minWidht:"15vh"}}
-                        onChange={(e) => setValue(e.target.value)}/>
+                <form>
+                    <input type="text" 
+                            value={value} 
+                            name="value"
+                            placeholder="Binary"
+                            style={{minHeight:"5vh", minWidht:"15vh"}}
+                            onChange={(e) => setValue(e.target.value)}/>
+                    <label for="value" className="formLabel">Binary</label>
+                </form>
             </div>
             }
             <div style={{ width:"50%", inlineSize: "90vh", overflowWrap:"break-word",position:"relative",  justifyContent:"center"}}>

@@ -25,13 +25,13 @@ const  Currencies = () => {
     }
 
     const roundNum = (num) => {
-        return (Math.round(num * 100) / 100).toFixed(2)
+        return (Math.round(num * 100) / 100).toFixed(4)
     }
 
     const handleChange = e => {
-        let value = Number(e.target.value)
+        let value = e.target.value
         setAmount(value)
-        newAmount.current =value
+        newAmount.current = value
         calculateConversion()
     }
 
@@ -72,11 +72,17 @@ const  Currencies = () => {
         <div>
             <div>   
             <h1>Currencies</h1>
+            <form>
                 <input type="number" 
                     value={amount} 
+                    name="amount"
                     id="amount"
+                    placeholder="Amount"
                     style={{minHeight:"5vh", marginBottom:"10%"}}
                     onChange={(e) => handleChange(e)}/>
+                <label for="amount" className="formLabel">Amount</label>
+            </form>
+
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%"}}>
                 <select name="origCurrency"
                         id="origCurrency"
@@ -98,7 +104,7 @@ const  Currencies = () => {
                                          origCurrencyRef.current = finalCurrency ;
                                          finalCurrencyRef.current = origCurrency ;
                                          calculateConversion()}}>
-                    <img src="./arrow.png" alt="Change"/>
+                    <img src={process.env.PUBLIC_URL + "/images/arrow.jpg"} alt="Change"/>
                 </button> 
                 <select id="finalCurrency"
                         value={finalCurrency}
@@ -115,7 +121,6 @@ const  Currencies = () => {
                 </select>
             </div>
             </div>
-                {/*<h1>{(amount) ? `${amount} ${origCurrency} = ${conversion.current} ${finalCurrency}` : ""}</h1>*/}
         </div>
     )
 }

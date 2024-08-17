@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./UnitForm.css"
+import "./UnitForm.scss"
 
 export default function UnitForm({title, units}) {
     const [value, setValue] = useState()
@@ -19,8 +19,13 @@ export default function UnitForm({title, units}) {
         <div>
             <h1>{title}</h1>
             <form>
-                <input type="number" value={value} onChange={handleChange} 
+                <input type="number" 
+                        name="value"
+                        value={value} 
+                        placeholder={title}
+                        onChange={handleChange} 
                         style={{minHeight:"5vh", marginBottom:"10%"}}/>
+                <label for="value" className="formLabel">{title}</label>
             </form>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%"}}>
                 <select name="firstSelection" 
@@ -38,7 +43,7 @@ export default function UnitForm({title, units}) {
                 <button style={{position: "absolute",}}
                         onClick={() => { setFirstSelection(lastSelection) ;
                                          setLastSelection(firstSelection)}}>
-                    <img src="./arrow.png" alt="Change"/>
+                    <img src={process.env.PUBLIC_URL + "/images/arrow.jpg"} alt="Change"/>
                 </button> 
                 <select name="lastSelection" 
                         id="lastSelection"
@@ -49,7 +54,7 @@ export default function UnitForm({title, units}) {
                             {Object.keys(units).filter(unit => unit !== firstSelection).map((unit, index) => (
                                 <option key={index} value={unit}>
                                     {unit}
-                                    {value ? `(${value * (units[unit] / units[firstSelection])})`: ""}
+                                    {value ? ` ${value * (units[unit] / units[firstSelection])}`: ""}
                                 </option>
                             ))}
                 </select>
