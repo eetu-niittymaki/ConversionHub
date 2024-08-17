@@ -37,7 +37,7 @@ export default function TemperatureForm() {
                     style={{minHeight:"5vh", marginBottom:"10%"}}/>
                 <label for="amount" className="formLabel">Temperature</label>
             </form>
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", maxWidth: "25vw"}}>
                 <select name="firstSelection" 
                         id="firstSelection"
                         value={firstSelection}
@@ -53,7 +53,7 @@ export default function TemperatureForm() {
                 <button onClick={() => { setFirstSelection(lastSelection) ; 
                                          setLastSelection(firstSelection) }}
                         style={{position: "absolute",}}>
-                    <img src={process.env.PUBLIC_URL + "/images/arrow.jpg"} alt="Change"/> 
+                    <img src={process.env.PUBLIC_URL + "/images/arrow.png"} alt="Change"/> 
                 </button> 
                 <select name="lastSelection" 
                         id="lastSelection"

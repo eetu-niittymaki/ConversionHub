@@ -3,13 +3,13 @@ img {
     height:5vh;
 }
 
-img:hover {
+.myImg:hover {
     border-radius: 10px;
     border-color: white;
     color: white;
     background: white;
 }
 
-img:active {
+.myImg:active {
     background: grey;
 }

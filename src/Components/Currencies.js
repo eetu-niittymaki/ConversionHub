@@ -25,7 +25,7 @@ const  Currencies = () => {
     }
 
     const roundNum = (num) => {
-        return (Math.round(num * 100) / 100).toFixed(4)
+        return (Math.round(num * 100) / 100).toFixed(2)
     }
 
     const handleChange = e => {
@@ -83,7 +83,7 @@ const  Currencies = () => {
                 <label for="amount" className="formLabel">Amount</label>
             </form>
 
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%"}}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "25vw"}}>
                 <select name="origCurrency"
                         id="origCurrency"
                         value={origCurrency}
@@ -93,30 +93,29 @@ const  Currencies = () => {
                                             origCurrencyRef.current = e.target.value ; 
                                             calculateConversion() }}>
                         {rates && Object.keys(rates).filter(currency => currency !== finalCurrency).map((currency, index) => (
-                            <option key={index} value={currency} >
+                            <option key={index} value={currency} style={{textDecoration:"underline", color:"white"}}>
                                {amount ? (currency === origCurrency ? amount : "") : ""} {currency} 
                             </option>
                         ))}
                 </select>
-                <button
-                        onClick={() => { setOrigCurrency(finalCurrency) ;
+                <button onClick={() => { setOrigCurrency(finalCurrency) ;
                                          setFinalCurrency(origCurrency) ;
                                          origCurrencyRef.current = finalCurrency ;
                                          finalCurrencyRef.current = origCurrency ;
                                          calculateConversion()}}>
-                    <img src={process.env.PUBLIC_URL + "/images/arrow.jpg"} alt="Change"/>
+                    <img src={process.env.PUBLIC_URL + "/images/arrow.png"} alt="Change"/>
                 </button> 
                 <select id="finalCurrency"
                         value={finalCurrency}
-                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh"}}
+                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh", }}
                         className="select"
                         onChange={(e) => { setFinalCurrency(e.target.value) ; 
                                             finalCurrencyRef.current = e.target.value ; 
                                             calculateConversion() }}>
                     {rates &&  Object.keys(rates).filter(currency => currency !== origCurrency).map((currency, index) => (
-                            <option key={index} value={currency}>
-                                {currency} {amount ? roundNum((rates[currency] / rates[origCurrencyRef.current]) * newAmount.current) : ""} 
-                            </option>
+                        <option key={index} value={currency}>
+                            {currency} {amount ? roundNum((rates[currency] / rates[origCurrencyRef.current]) * newAmount.current) : ""} 
+                        </option>
                     ))}
                 </select>
             </div>

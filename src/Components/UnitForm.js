@@ -27,7 +27,7 @@ export default function UnitForm({title, units}) {
                         style={{minHeight:"5vh", marginBottom:"10%"}}/>
                 <label for="value" className="formLabel">{title}</label>
             </form>
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%"}}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "25vw"}}>
                 <select name="firstSelection" 
                         id="firstSelection"
                         value={firstSelection}
@@ -43,7 +43,7 @@ export default function UnitForm({title, units}) {
                 <button style={{position: "absolute",}}
                         onClick={() => { setFirstSelection(lastSelection) ;
                                          setLastSelection(firstSelection)}}>
-                    <img src={process.env.PUBLIC_URL + "/images/arrow.jpg"} alt="Change"/>
+                    <img src={process.env.PUBLIC_URL + "/images/arrow.png"} alt="Change"/>
                 </button> 
                 <select name="lastSelection" 
                         id="lastSelection"

@@ -53,6 +53,7 @@ const Binary = () => {
                     </form>
                     <img src={process.env.PUBLIC_URL + "/images/clipboard.png"} 
                         alt="Clipboard" 
+                        className="myImg"
                         onClick={() => {navigator.clipboard.writeText(stringToBinary(value))}}/>
                 </div>
             </div>            
