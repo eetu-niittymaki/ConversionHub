@@ -1,6 +1,6 @@
 export const length = { 
-    "mm":  1000, "cm": 100, "meter": 1, "dam": 0.01, "hm": 0.001, "km": 0.0001,
-    "mile": 0.000621371, "yard": 1.09361, "foot": 3.28084, "inch": 39.3701
+    "mm":  0.001, "cm": 0.01, "meter": 1, "dam": 10, "hm": 100, "km": 1000,
+    "mile": 1609.34449, "yard": 0.9144, "foot": 0.3048, "inch": 0.0254
 }
 
 export const data = {
@@ -9,12 +9,16 @@ export const data = {
 }
 
 export const weight = {
-    "g": 1, "kg": 0.001, "mg": 1000, "Metric Ton": 0.000001, "Long Ton": 0.000984207, 
-    "Short Ton": 0.00110231, "Pound": 0.00220462, "Ounce": 0.03527396, "Carat": 5
+    "g": 1, "kg": 0.001, "mg": 1000, "Metric Ton": 0.000001, "Long Ton": 1016047, 
+    "Short Ton": 907184.7, "Pound": 453.5924, "Ounce": 28.34952, "Carat": 0.2
 }
 
 export const area = {
-    "Sq Meter": 1, "Sq km": 0.000001, "Sq cm": 10000, "Sq mm": 1000000, "Acre": 0.000247105, "Hectare": 0.0001,
-    "Sq Mile": 3.861e-7, "Sq Yard": 1.19599, "Sq Foot": 10.7639, "Sq Inch": 1550.0031
+    "Sq Meter": 1, "Sq km": 1000000, "Sq cm": 0.0001, "Sq mm": 0.0000001, "Acre": 4046.856, "Hectare": 10000,
+    "Sq Mile": 2.589988e+6, "Sq Yard": 0.8361274, "Sq Foot": 0.09290304, "Sq Inch": 0.00064516, "Barn": 1e-28
 }
 
+export const volume = {
+    "ml": 1, "tsp": 5, "tbsp": 15, "dl": 100, "l": 1000, "cup": 236.5882365, "pint (US)": 568.2612, "pint (Imperial)": 473.1765, 
+    "ounce": 28.41306, "gallon (US)": 3785.412, "gallon (Imperial)": 4546.09,
+}

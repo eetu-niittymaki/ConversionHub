@@ -49,7 +49,7 @@ const Binary = () => {
                                 placeholder="Text"
                                 style={{minHeight:"5vh", minWidht:"15vh"}}
                                 onChange={(e) => setValue(e.target.value)}/>
-                        <label for="value" className="formLabel">Text</label>
+                        <label for="value" className="formLabel">Text</label>   
                     </form>
                     <img src={process.env.PUBLIC_URL + "/images/clipboard.png"} 
                         alt="Clipboard" 
@@ -71,7 +71,7 @@ const Binary = () => {
                 </form>
             </div>
             }
-            <div style={{ width:"50%", inlineSize: "90vh", overflowWrap:"break-word",position:"relative",  justifyContent:"center"}}>
+            <div style={{ width:"50%", inlineSize: "90vh", overflowWrap:"break-word", position:"relative",  justifyContent:"center"}}>
                 <h3>
                     {mode === false ? stringToBinary(value) : binaryToString(value)}
                 </h3>

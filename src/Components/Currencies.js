@@ -83,7 +83,7 @@ const  Currencies = () => {
                 <label for="amount" className="formLabel">Amount</label>
             </form>
 
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "25vw"}}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "27vw"}}>
                 <select name="origCurrency"
                         id="origCurrency"
                         value={origCurrency}
@@ -94,7 +94,7 @@ const  Currencies = () => {
                                             calculateConversion() }}>
                         {rates && Object.keys(rates).filter(currency => currency !== finalCurrency).map((currency, index) => (
                             <option key={index} value={currency} style={{textDecoration:"underline", color:"white"}}>
-                               {amount ? (currency === origCurrency ? amount : "") : ""} {currency} 
+                               {currency} {amount ? (currency === origCurrency ? amount : "") : ""}  
                             </option>
                         ))}
                 </select>
@@ -107,14 +107,14 @@ const  Currencies = () => {
                 </button> 
                 <select id="finalCurrency"
                         value={finalCurrency}
-                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh", }}
+                        style={{marginLeft: "5vh", minWidth:"15vh"}}
                         className="select"
                         onChange={(e) => { setFinalCurrency(e.target.value) ; 
                                             finalCurrencyRef.current = e.target.value ; 
                                             calculateConversion() }}>
                     {rates &&  Object.keys(rates).filter(currency => currency !== origCurrency).map((currency, index) => (
                         <option key={index} value={currency}>
-                            {currency} {amount ? roundNum((rates[currency] / rates[origCurrencyRef.current]) * newAmount.current) : ""} 
+                            {currency}  {amount ? roundNum((rates[currency] / rates[origCurrencyRef.current]) * newAmount.current) : ""} 
                         </option>
                     ))}
                 </select>

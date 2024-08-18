@@ -27,7 +27,7 @@ export default function UnitForm({title, units}) {
                         style={{minHeight:"5vh", marginBottom:"10%"}}/>
                 <label for="value" className="formLabel">{title}</label>
             </form>
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "25vw"}}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%",  maxWidth: "25vw"}}>
                 <select name="firstSelection" 
                         id="firstSelection"
                         value={firstSelection}
@@ -36,7 +36,7 @@ export default function UnitForm({title, units}) {
                         onChange={e => setFirstSelection(e.target.value)}>
                             {Object.keys(units).filter(unit => unit !== lastSelection).map((unit, index) => (
                                 <option key={index} value={unit}>
-                                   {value ? (unit === firstSelection ? value : "") : ""} {unit}
+                                   {unit} {value ? (unit === firstSelection ? value : "") : ""} 
                                 </option>
                             ))}
                 </select>
@@ -48,13 +48,13 @@ export default function UnitForm({title, units}) {
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
-                        style={{marginLeft: "5vh"}}
+                        style={{ marginLeft: "5vh"}}
                         className="select"
                         onChange={e => setLastSelection(e.target.value)}>
                             {Object.keys(units).filter(unit => unit !== firstSelection).map((unit, index) => (
                                 <option key={index} value={unit}>
                                     {unit}
-                                    {value ? ` ${value * (units[unit] / units[firstSelection])}`: ""}
+                                    {value ? ` ${value * (units[firstSelection] / units[unit])}`: ""}
                                 </option>
                             ))}
                 </select>

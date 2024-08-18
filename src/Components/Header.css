@@ -18,7 +18,9 @@
 .children {
     justify-content: space-evenly;
     margin: auto;
-}
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+}   
 
 .children:hover {
     color: #eef4ed;
@@ -30,18 +32,12 @@
     color: #001F3F;
     font-size: 50px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
 }
 
 .titleEnd {
     color: #8da0c4;
     font-size: 30px;
-    font-family:'Times New Roman', Times, serif
-}
-
-.titleStart:hover {
-    color: white;
-}
-
-.titleEnd:hover {
-    color: #001F3F;
+    font-family:'Times New Roman', Times, serif;
+    cursor: pointer;
 }

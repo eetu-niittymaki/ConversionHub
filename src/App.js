@@ -1,9 +1,7 @@
 import './App.scss';
 import { useState, } from "react"
 import UnitForm from "./Components/UnitForm"
-import LengthForm from "./Components/LengthForm"
 import TemperatureForm from './Components/TemperatureForm';
-import DropdownMenu from "./Components/DropdownMenu"
 import Currencies from './Components/Currencies';
 import Binary from './Components/Binary';
 import Header from './Components/Header';
@@ -26,6 +24,10 @@ function App() {
           return <UnitForm title="Area" units={units.area}/>
        case "Weight":
         return <UnitForm title="Weight" units={units.weight}/>
+      case "Volume":
+        return <UnitForm title="Volume" units={units.volume}/>
+      case "Data":
+        return <UnitForm title="Data" units={units.data}/>
       case "Currencies":
         return <Currencies/>
       case "Binary":
@@ -43,8 +45,10 @@ function App() {
         <p>Length</p>
         <p>Area</p>
         <p>Weight</p>
+        <p>Volume</p>
         <p>Temperature</p>
         <p>Currencies</p>
+        <p>Data</p>
         <p>Binary</p>
       </Header >
       <div className="App-body">

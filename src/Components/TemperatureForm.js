@@ -16,11 +16,11 @@ export default function TemperatureForm() {
     
     const calculateTemp = (unit) => {
         if (firstSelection === "C") {
-            return (unit === "F") ? (roundNum(amount * (1.8 + 32))) : (roundNum(amount + 273.15))
+            return (unit === "F") ? roundNum(amount * (1.8 + 32)) : roundNum(amount + 273.15)
         } else if (firstSelection === "F") {
-            return  (unit === "C") ? (roundNum((amount - 32) / 1.8)) : ((roundNum((amount + 459.67) * 5 / 9)))
+            return  (unit === "C") ? roundNum((amount - 32) / 1.8) : roundNum((amount + 459.67) * 5 / 9)
         } else {
-            return (unit === "C") ? (roundNum(amount - 273.1) ) : (roundNum(amount * 9 / 5 - 459.67))
+            return (unit === "C") ? roundNum(amount - 273.1)  : roundNum(amount * 9 / 5 - 459.67)
         }
     }
 
@@ -42,11 +42,11 @@ export default function TemperatureForm() {
                         id="firstSelection"
                         value={firstSelection}
                         className="select"
-                        style={{marginRight: "5vh", minWidth:"15vh", minHeight:"5vh"}}
+                        style={{marginRight: "5vh"}}
                         onChange={e => setFirstSelection(e.target.value)}>   
                         {tempUnits.filter(unit => unit !== lastSelection).map((unit) => (
                              <option value={unit}>
-                                {amount ? (unit === firstSelection ? amount : "") : ""} {unit}
+                               {unit} {amount ? (unit === firstSelection ? amount : "") : ""} 
                             </option>
                         ))}
                 </select>
@@ -58,7 +58,7 @@ export default function TemperatureForm() {
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
-                        style={{marginLeft: "5vh", minWidth:"15vh", minHeight:"5vh"}}
+                        style={{marginLeft: "5vh"}}
                         className="select"
                         onChange={e => setLastSelection(e.target.value)}>
                         {tempUnits.filter(unit => unit !== firstSelection).map((unit) => (
