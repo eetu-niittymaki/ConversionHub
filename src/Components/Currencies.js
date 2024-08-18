@@ -119,7 +119,9 @@ const  Currencies = () => {
                     ))}
                 </select>
             </div>
-            </div>
+            <h3>{amount ? `${roundNum(newAmount.current * (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current]))} ${finalCurrency}`: ""}</h3>  
+        </div>
+        
         </div>
     )
 }

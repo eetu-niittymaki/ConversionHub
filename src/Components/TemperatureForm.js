@@ -46,7 +46,7 @@ export default function TemperatureForm() {
                         onChange={e => setFirstSelection(e.target.value)}>   
                         {tempUnits.filter(unit => unit !== lastSelection).map((unit) => (
                              <option value={unit}>
-                               {unit} {amount ? (unit === firstSelection ? amount : "") : ""} 
+                                {amount ? (unit === firstSelection ? amount : "") : ""} {unit}
                             </option>
                         ))}
                 </select>
@@ -63,13 +63,12 @@ export default function TemperatureForm() {
                         onChange={e => setLastSelection(e.target.value)}>
                         {tempUnits.filter(unit => unit !== firstSelection).map((unit) => (
                             <option value={unit}>
-                               {unit} {amount ? calculateTemp(unit) : ""}
+                               {amount ? calculateTemp(unit) : ""} {unit} 
                                 </option>
                         ))}
                 </select>
             </div>     
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
-            </div>
+            <h3>{amount ? `${calculateTemp(lastSelection)} ${lastSelection}` : ""}</h3>
         </div>
     )
   }
