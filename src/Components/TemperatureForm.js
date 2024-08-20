@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Form from "./Form";
 
 export default function TemperatureForm() {
     const [amount, setAmount] = useState()
@@ -27,16 +28,12 @@ export default function TemperatureForm() {
     return (
         <div>
             <h1>Temperature</h1>
-            <form>
-                <input type="number" 
-                    value={amount} 
-                    name="amount"
-                    id="amount"
-                    placeHolder="Temperature"
-                    onChange={(e) => handleChange(e)}
-                    style={{minHeight:"5vh", marginBottom:"10%"}}/>
-                <label for="amount" className="formLabel">Temperature</label>
-            </form>
+            <Form amount={amount}
+                  name={"amount"}
+                  title={"Temperature"}
+                  placeholder={"Temperature"}
+                  handleChange={(e) => handleChange(e)}
+            />  
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", maxWidth: "25vw"}}>
                 <select name="firstSelection" 
                         id="firstSelection"

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Form from "./Form";
 import "./UnitForm.scss"
 
 export default function UnitForm({title, units}) {
@@ -18,15 +19,12 @@ export default function UnitForm({title, units}) {
     return (
         <div>
             <h1>{title}</h1>
-            <form>
-                <input type="number" 
-                        name="value"
-                        value={value} 
-                        placeholder={title}
-                        onChange={handleChange} 
-                        style={{minHeight:"5vh", marginBottom:"10%"}}/>
-                <label for="value" className="formLabel">{title}</label>
-            </form>
+            <Form amount={value}
+                  name={"amount"}
+                  title={title}
+                  placeholder={title}
+                  handleChange={handleChange}
+            />  
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%",  maxWidth: "25vw"}}>
                 <select name="firstSelection" 
                         id="firstSelection"

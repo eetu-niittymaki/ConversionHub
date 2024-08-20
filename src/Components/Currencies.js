@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import axios from "axios";
+import Form from "./Form";
 
 const  Currencies = () => {
     const [amount, setAmount] = useState()
@@ -72,17 +73,12 @@ const  Currencies = () => {
         <div>
             <div>   
             <h1>Currencies</h1>
-            <form>
-                <input type="number" 
-                    value={amount} 
-                    name="amount"
-                    id="amount"
-                    placeholder="Amount"
-                    style={{minHeight:"5vh", marginBottom:"10%"}}
-                    onChange={(e) => handleChange(e)}/>
-                <label for="amount" className="formLabel">Amount</label>
-            </form>
-
+            <Form amount={amount}
+                  name={"amount"}
+                  placeholder={"Amount"}
+                  title={"Amount"}
+                  handleChange={(e) => handleChange(e)}
+            />
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "27vw"}}>
                 <select name="origCurrency"
                         id="origCurrency"

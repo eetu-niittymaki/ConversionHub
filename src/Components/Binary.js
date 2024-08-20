@@ -41,7 +41,7 @@ const Binary = () => {
             ? 
             <div>
                 <h3>Text To Binary</h3>
-                    <form>
+                    <form onSubmit={e =>  e.preventDefault()}> 
                         <input type="text" 
                                 value={value} 
                                 name="value"
@@ -58,7 +58,7 @@ const Binary = () => {
             :
             <div>
                 <h3>Binary To Text</h3>
-                <form>
+                <form onSubmit={e =>  e.preventDefault()}>
                     <input type="text" 
                             value={value} 
                             name="value"
