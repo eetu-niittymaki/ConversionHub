@@ -34,7 +34,7 @@ export default function UnitForm({title, units}) {
                         style={{marginRight: "5vh"}}
                         className="select"
                         onChange={e => setFirstSelection(e.target.value)}>
-                            {Object.keys(units).filter(unit => unit !== lastSelection).map((unit, index) => (
+                            {Object.keys(units).map((unit, index) => (
                                 <option key={index} value={unit}>
                                    {value ? (unit === firstSelection ? value : "") : ""} {unit} 
                                 </option>
@@ -51,7 +51,7 @@ export default function UnitForm({title, units}) {
                         style={{ marginLeft: "5vh"}}
                         className="select"
                         onChange={e => setLastSelection(e.target.value)}>
-                            {Object.keys(units).filter(unit => unit !== firstSelection).map((unit, index) => (
+                            {Object.keys(units).map((unit, index) => (
                                 <option key={index} value={unit}>
                                      {value ? value * (units[firstSelection] / units[unit]) : ""} {unit}
                                 </option>

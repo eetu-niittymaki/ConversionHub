@@ -41,7 +41,6 @@ const Binary = () => {
             ? 
             <div>
                 <h3>Text To Binary</h3>
-                <div style={{position: "relative", display:"flex", flexDirection:"row", marginBottom: "5%", justifyContent: "center"}}>
                     <form>
                         <input type="text" 
                                 value={value} 
@@ -56,7 +55,6 @@ const Binary = () => {
                         className="myImg"
                         onClick={() => {navigator.clipboard.writeText(stringToBinary(value))}}/>
                 </div>
-            </div>            
             :
             <div>
                 <h3>Binary To Text</h3>
