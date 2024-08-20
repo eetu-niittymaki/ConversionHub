@@ -11,7 +11,7 @@ export const data = {
 }
 
 export const weight = {
-    "g": 1, "kg": 0.001, "mg": 1000, "Milligram": 1e-6, "Centigram": 0.01, "Decigram": 0.1, "Dekagram": 10, "Femtogram": 1e-15, "Megagram": 1e+6,
+    "Gram": 1, "Kilogram":  1000, "Milligram": 0.001, "Centigram": 0.01, "Decigram": 0.1, "Dekagram": 10, "Femtogram": 1e-15, "Megagram": 1e+6,
     "Metric Ton": 0.000001, "Long Ton": 1016047,  "Ton": 907184.7, "Short Ton": 907184.7, 
     "Pound": 453.5924, "Ounce": 28.34952, "Stone": 6350.293, "Carat": 0.2, "Dram": 1.771845, "Da": 1.660539e-24, 
 }
