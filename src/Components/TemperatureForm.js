@@ -35,7 +35,7 @@ export default function TemperatureForm() {
                   title={"Temperature"}
                   handleChange={(e) => handleChange(e)}
             />  
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", maxWidth: "25vw"}}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", maxWidth: "35vw"}}>
                 <Select type={"first"}
                         firstSelection={firstSelection}
                         amount={amount}
@@ -48,7 +48,7 @@ export default function TemperatureForm() {
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
-                        style={{marginLeft: "5vh"}}
+                        style={{marginLeft: "5vh", minWidth: "15vw", maxWidth: "30vw"}}
                         className="select"
                         onChange={e => setLastSelection(e.target.value)}>
                         {Object.keys(tempUnits).filter(unit => unit !== firstSelection).map((unit) => (

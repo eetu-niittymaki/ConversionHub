@@ -14,7 +14,8 @@ select {
     border-color: white;
     min-width: 15vh;
     min-height: 6vh;
-    font-weight: bold;
+    font-family: "Roboto";
+    font-weight: 900;
 }
 
 .select {
@@ -95,4 +96,8 @@ input:focus {
 
 input { 
     &:required,&:invalid { box-shadow:none; }
+}
+
+h1 {
+    font-weight: bold;
 }

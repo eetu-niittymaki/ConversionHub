@@ -27,10 +27,6 @@ const  Currencies = () => {
         return Math.floor(Math.random() * apiKeys.length)
     }
 
-    const roundNum = (num) => {
-        return (Math.round(num * 100) / 100).toFixed(2)
-    }
-
     const handleChange = e => {
         let value = e.target.value
         setAmount(value)
@@ -80,7 +76,7 @@ const  Currencies = () => {
                   title={"Amount"}
                   handleChange={(e) => handleChange(e)}
             />
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "27vw"}}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "35vw"}}>
                 <Select type={"first"}
                         firstSelection={origCurrency}
                         amount={amount}

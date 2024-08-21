@@ -10,7 +10,7 @@ const Form = ({amount, name, title,  handleChange}) => {
                 name={name}
                 placeHolder={title}
                 onChange={handleChange}
-                style={{minHeight:"5vh", marginBottom:"10%"}}/>
+                style={{minHeight:"5vh", marginBottom:"3em"}}/>
             <label for={name} className="formLabel">{title}</label>
         </form>
     )

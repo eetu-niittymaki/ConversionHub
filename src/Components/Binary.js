@@ -35,7 +35,7 @@ const Binary = () => {
 
     return(
         <div>
-            <button style={{minHeight:"5vh", minWidht:"15vh"}}
+            <button style={{minHeight:"5vh", minWidth:"10vw"}}
                 onClick={() => {setMode(!mode) ; setValue("")}}>Change Mode</button>
             {mode === false 
             ? 
@@ -46,7 +46,7 @@ const Binary = () => {
                                 value={value} 
                                 name="value"
                                 placeholder="Text"
-                                style={{minHeight:"5vh", minWidht:"15vh"}}
+                                style={{minHeight:"5vh", minWidth:"15vw"}}
                                 onChange={(e) => setValue(e.target.value)}/>
                         <label for="value" className="formLabel">Text</label>   
                     </form>
@@ -63,7 +63,7 @@ const Binary = () => {
                             value={value} 
                             name="value"
                             placeholder="Binary"
-                            style={{minHeight:"5vh", minWidht:"15vh"}}
+                            style={{minHeight:"5vh", minWidth:"15vw"}}
                             onChange={(e) => setValue(e.target.value)}/>
                     <label for="value" className="formLabel">Binary</label>
                 </form>
