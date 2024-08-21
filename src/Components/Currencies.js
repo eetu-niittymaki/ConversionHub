@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import axios from "axios";
 import Form from "./Form";
 import ChangeButton from "./ChangeButton";
-import FirstSelect from "./FirstSelect";
-import LastSelect from "./LastSelect";
+import Select from "./Select";
 
 const  Currencies = () => {
     const [amount, setAmount] = useState()
@@ -82,12 +81,13 @@ const  Currencies = () => {
                   handleChange={(e) => handleChange(e)}
             />
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "27vw"}}>
-                <FirstSelect firstSlection={origCurrency}
-                            amount={amount}
-                            units={rates}
-                            handleChange={(e) => { setOrigCurrency(e.target.value) ; 
-                                                    origCurrencyRef.current = e.target.value ; 
-                                                    calculateConversion()}}
+                <Select type={"first"}
+                        firstSelection={origCurrency}
+                        amount={amount}
+                        units={rates}
+                        handleChange={(e) => { setOrigCurrency(e.target.value) ; 
+                                                origCurrencyRef.current = e.target.value ; 
+                                                calculateConversion()}}
                 />
                 <ChangeButton functions={() => { setOrigCurrency(finalCurrency) ;
                                                 setFinalCurrency(origCurrency) ;
@@ -95,17 +95,17 @@ const  Currencies = () => {
                                                 finalCurrencyRef.current = origCurrency ;
                                                 calculateConversion()}}
                 />
-                <LastSelect lastSelection={finalCurrencyRef.current}
-                            firstSelection={origCurrencyRef.current}
-                            amount={amountRef.current}
-                            units={rates}
-                            type={1}
-                            handleChange={(e) => { setFinalCurrency(e.target.value) ; 
+                <Select lastSelection={finalCurrencyRef.current}
+                        firstSelection={origCurrencyRef.current}
+                        amount={amountRef.current}
+                        units={rates}
+                        output={1}
+                        handleChange={(e) => { setFinalCurrency(e.target.value) ; 
                                                 finalCurrencyRef.current = e.target.value ; 
                                                 calculateConversion() }}
                 />
             </div>
-            <h3>{amount ? `${roundNum(amountRef.current * (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current]))} ${finalCurrency}`: ""}</h3>  
+            <h3>{amount ? `${amountRef.current * (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current])} ${finalCurrency}`: ""}</h3>  
         </div>
         
         </div>

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import ChangeButton from "./ChangeButton";
-import FirstSelect from "./FirstSelect";
-import LastSelect from "./LastSelect";
+import Select from "./Select";
 
 export default function TemperatureForm() {
     const [amount, setAmount] = useState()
@@ -37,19 +36,15 @@ export default function TemperatureForm() {
                   handleChange={(e) => handleChange(e)}
             />  
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", maxWidth: "25vw"}}>
-                <FirstSelect firstSlection={firstSelection}
-                            amount={amount}
-                            units={tempUnits}
-                            handleChange={e => setFirstSelection(e.target.value)}
+                <Select type={"first"}
+                        firstSelection={firstSelection}
+                        amount={amount}
+                        units={tempUnits}
+                        handleChange={e => setFirstSelection(e.target.value)}
                 />
                 <ChangeButton functions={() => { setFirstSelection(lastSelection) ; 
                                                 setLastSelection(firstSelection) }}
                 />
-                {/*<LastSelect value={lastSelection}
-                            amount={amount}
-                            units={tempUnits}
-                            handleChange={e => setLastSelection(e.target.value)}
-                />*/}
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
