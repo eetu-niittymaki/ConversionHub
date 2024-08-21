@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import axios from "axios";
 import Form from "./Form";
+import ChangeButton from "./ChangeButton";
 
 const  Currencies = () => {
     const [amount, setAmount] = useState()
@@ -94,13 +95,12 @@ const  Currencies = () => {
                             </option>
                         ))}
                 </select>
-                <button onClick={() => { setOrigCurrency(finalCurrency) ;
+                <ChangeButton functions={() => { setOrigCurrency(finalCurrency) ;
                                          setFinalCurrency(origCurrency) ;
                                          origCurrencyRef.current = finalCurrency ;
                                          finalCurrencyRef.current = origCurrency ;
-                                         calculateConversion()}}>
-                    <img src={process.env.PUBLIC_URL + "/images/arrow.png"} alt="Change"/>
-                </button> 
+                                         calculateConversion()}}
+                />
                 <select id="finalCurrency"
                         value={finalCurrency}
                         style={{marginLeft: "5vh", minWidth:"15vh"}}

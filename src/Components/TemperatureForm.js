@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Form from "./Form";
+import ChangeButton from "./ChangeButton";
 
 export default function TemperatureForm() {
     const [amount, setAmount] = useState()
@@ -47,11 +48,9 @@ export default function TemperatureForm() {
                             </option>
                         ))}
                 </select>
-                <button onClick={() => { setFirstSelection(lastSelection) ; 
-                                         setLastSelection(firstSelection) }}
-                        style={{position: "absolute",}}>
-                    <img src={process.env.PUBLIC_URL + "/images/arrow.png"} alt="Change"/> 
-                </button> 
+                <ChangeButton functions={() => { setFirstSelection(lastSelection) ; 
+                                                setLastSelection(firstSelection) }}
+                />
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}

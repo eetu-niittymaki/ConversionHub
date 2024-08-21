@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
+import ChangeButton from "./ChangeButton";
 import "./UnitForm.scss"
 
 export default function UnitForm({title, units}) {
@@ -15,7 +16,7 @@ export default function UnitForm({title, units}) {
     const handleChange = (e) => {
         setValue(e.target.value)
     }
-
+    
     return (
         <div>
             <h1>{title}</h1>
@@ -38,11 +39,9 @@ export default function UnitForm({title, units}) {
                                 </option>
                             ))}
                 </select>
-                <button style={{position: "absolute",}}
-                        onClick={() => { setFirstSelection(lastSelection) ;
-                                         setLastSelection(firstSelection)}}>
-                    <img src={process.env.PUBLIC_URL + "/images/arrow.png"} alt="Change"/>
-                </button> 
+                <ChangeButton functions={() => { setFirstSelection(lastSelection) ;
+                                                setLastSelection(firstSelection)}}
+                />
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
