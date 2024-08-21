@@ -1,17 +1,18 @@
 import React from "react"
+import "./UnitForm.scss"
 
-const FirstSelect = ({value, amount, units, handleChange}) => {
+const FirstSelect = ({firstSlection, amount, units, handleChange}) => {
     return (
         <div>
-             <select name="select" 
-                        id="select"
-                        value={value}
+             <select name="firstSelection" 
+                        id="firstSelection"
+                        value={firstSlection}
                         className="select"
-                        style={{marginRight: "5vh"}}
+                        style={{marginRight: "5vh", maxWidth: "15vh"}}
                         onChange={handleChange}>
-                            {units.map((unit, index) => (
+                            {units && Object.keys(units).map((unit, index) => (
                                 <option key={index} value={unit}>
-                                    {amount ? (unit === value ? amount : "") : ""} {unit} 
+                                    {amount ? (unit === firstSlection ? amount : "") : ""} {unit} 
                                 </option>
                             ))}
                 </select>

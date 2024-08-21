@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import ChangeButton from "./ChangeButton";
+import FirstSelect from "./FirstSelect";
+import LastSelect from "./LastSelect";
 
 export default function TemperatureForm() {
     const [amount, setAmount] = useState()
     const [firstSelection, setFirstSelection] = useState("C")
     const [lastSelection, setLastSelection] = useState("F")
-    const tempUnits = ["C", "F", "K"]
+    const tempUnits = {"C": "celcius", "F": "fahrenheit",  "K": "kelvin"}
 
     const handleChange = (e) => {
         setAmount(e.target.value)
@@ -32,32 +34,29 @@ export default function TemperatureForm() {
             <Form amount={amount}
                   name={"amount"}
                   title={"Temperature"}
-                  placeholder={"Temperature"}
                   handleChange={(e) => handleChange(e)}
             />  
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", maxWidth: "25vw"}}>
-                <select name="firstSelection" 
-                        id="firstSelection"
-                        value={firstSelection}
-                        className="select"
-                        style={{marginRight: "5vh"}}
-                        onChange={e => setFirstSelection(e.target.value)}>   
-                        {tempUnits.filter(unit => unit !== lastSelection).map((unit) => (
-                             <option value={unit}>
-                                {amount ? (unit === firstSelection ? amount : "") : ""} {unit}
-                            </option>
-                        ))}
-                </select>
+                <FirstSelect firstSlection={firstSelection}
+                            amount={amount}
+                            units={tempUnits}
+                            handleChange={e => setFirstSelection(e.target.value)}
+                />
                 <ChangeButton functions={() => { setFirstSelection(lastSelection) ; 
                                                 setLastSelection(firstSelection) }}
                 />
+                {/*<LastSelect value={lastSelection}
+                            amount={amount}
+                            units={tempUnits}
+                            handleChange={e => setLastSelection(e.target.value)}
+                />*/}
                 <select name="lastSelection" 
                         id="lastSelection"
                         value={lastSelection}
                         style={{marginLeft: "5vh"}}
                         className="select"
                         onChange={e => setLastSelection(e.target.value)}>
-                        {tempUnits.filter(unit => unit !== firstSelection).map((unit) => (
+                        {Object.keys(tempUnits).filter(unit => unit !== firstSelection).map((unit) => (
                             <option value={unit}>
                                {amount ? calculateTemp(unit) : ""} {unit} 
                                 </option>

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react"
 import axios from "axios";
 import Form from "./Form";
 import ChangeButton from "./ChangeButton";
+import FirstSelect from "./FirstSelect";
+import LastSelect from "./LastSelect";
 
 const  Currencies = () => {
     const [amount, setAmount] = useState()
@@ -11,7 +13,7 @@ const  Currencies = () => {
     const [finalCurrency, setFinalCurrency] = useState("EUR")
     let origCurrencyRef = useRef("USD")
     let finalCurrencyRef = useRef("EUR")
-    let newAmount = useRef()
+    let amountRef = useRef()
     let conversion = useRef()
 
     const apiKeys = [ 
@@ -33,7 +35,7 @@ const  Currencies = () => {
     const handleChange = e => {
         let value = e.target.value
         setAmount(value)
-        newAmount.current = value
+        amountRef.current = value
         calculateConversion()
     }
 
@@ -52,7 +54,7 @@ const  Currencies = () => {
     }
 
     const calculateConversion = async () => {
-        conversion.current = (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current]) * newAmount.current
+        conversion.current = (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current]) * amountRef.current
     }
 
     useEffect(() => {
@@ -76,46 +78,34 @@ const  Currencies = () => {
             <h1>Currencies</h1>
             <Form amount={amount}
                   name={"amount"}
-                  placeholder={"Amount"}
                   title={"Amount"}
                   handleChange={(e) => handleChange(e)}
             />
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "27vw"}}>
-                <select name="origCurrency"
-                        id="origCurrency"
-                        value={origCurrency}
-                        style={{marginRight: "5vh", minWidth:"15vh", minHeight:"5vh" }}
-                        className="select"
-                        onChange={(e) => { setOrigCurrency(e.target.value) ; 
-                                            origCurrencyRef.current = e.target.value ; 
-                                            calculateConversion() }}>
-                        {rates && Object.keys(rates).filter(currency => currency !== finalCurrency).map((currency, index) => (
-                            <option key={index} value={currency} style={{textDecoration:"underline", color:"white"}}>
-                               {currency} {amount ? (currency === origCurrency ? amount : "") : ""}  
-                            </option>
-                        ))}
-                </select>
-                <ChangeButton functions={() => { setOrigCurrency(finalCurrency) ;
-                                         setFinalCurrency(origCurrency) ;
-                                         origCurrencyRef.current = finalCurrency ;
-                                         finalCurrencyRef.current = origCurrency ;
-                                         calculateConversion()}}
+                <FirstSelect firstSlection={origCurrency}
+                            amount={amount}
+                            units={rates}
+                            handleChange={(e) => { setOrigCurrency(e.target.value) ; 
+                                                    origCurrencyRef.current = e.target.value ; 
+                                                    calculateConversion()}}
                 />
-                <select id="finalCurrency"
-                        value={finalCurrency}
-                        style={{marginLeft: "5vh", minWidth:"15vh"}}
-                        className="select"
-                        onChange={(e) => { setFinalCurrency(e.target.value) ; 
-                                            finalCurrencyRef.current = e.target.value ; 
-                                            calculateConversion() }}>
-                    {rates &&  Object.keys(rates).filter(currency => currency !== origCurrency).map((currency, index) => (
-                        <option key={index} value={currency}>
-                            {currency}  {amount ? roundNum((rates[currency] / rates[origCurrencyRef.current]) * newAmount.current) : ""} 
-                        </option>
-                    ))}
-                </select>
+                <ChangeButton functions={() => { setOrigCurrency(finalCurrency) ;
+                                                setFinalCurrency(origCurrency) ;
+                                                origCurrencyRef.current = finalCurrency ;
+                                                finalCurrencyRef.current = origCurrency ;
+                                                calculateConversion()}}
+                />
+                <LastSelect lastSelection={finalCurrencyRef.current}
+                            firstSelection={origCurrencyRef.current}
+                            amount={amountRef.current}
+                            units={rates}
+                            type={1}
+                            handleChange={(e) => { setFinalCurrency(e.target.value) ; 
+                                                finalCurrencyRef.current = e.target.value ; 
+                                                calculateConversion() }}
+                />
             </div>
-            <h3>{amount ? `${roundNum(newAmount.current * (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current]))} ${finalCurrency}`: ""}</h3>  
+            <h3>{amount ? `${roundNum(amountRef.current * (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current]))} ${finalCurrency}`: ""}</h3>  
         </div>
         
         </div>
