@@ -1,8 +1,8 @@
 import React from "react"
-import "./UnitForm.scss"
+import "../App.scss"
 
-const Select = ({type, lastSelection, firstSelection, output, amount, units, handleChange}) => {
-    if (type === "first") {
+const Select = ({type, firstSelection, lastSelection,  units, amount, handleChange, output,}) => {
+    if (type === true) {
         return (
             <select name="firstSelection" 
                 id="firstSelection"
@@ -28,7 +28,8 @@ const Select = ({type, lastSelection, firstSelection, output, amount, units, han
                     {units && Object.keys(units).map((unit, index) => (
                         <option key={index} value={unit}>
                             {amount ? 
-                                    output === 0 ? (amount * (units[firstSelection] / units[unit])) : (amount * (units[unit] / units[firstSelection]))
+                                    output === false ? (amount * (units[firstSelection] / units[unit])) 
+                                                     : (amount * (units[unit] / units[firstSelection]))
                                     : ""} {unit}
                         </option>
                     ))}

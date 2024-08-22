@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import ChangeButton from "./ChangeButton";
 import Select from "./Select";
-import "./UnitForm.scss"
+import "../App.scss"
 
 export default function UnitForm({title, units}) {
     const [amount, setAmount] = useState()
@@ -27,7 +27,7 @@ export default function UnitForm({title, units}) {
                   handleChange={handleChange}
             />  
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%",  maxWidth: "35vw"}}>
-                <Select type={"first"}
+                <Select type={true}
                         firstSelection={firstSelection} 
                         amount={amount}
                         units={units}
@@ -35,11 +35,11 @@ export default function UnitForm({title, units}) {
                 <ChangeButton functions={() => { setFirstSelection(lastSelection) ;
                                                 setLastSelection(firstSelection)}}
                 />
-                <Select lastSelection={lastSelection}
-                        firstSelection={firstSelection}
+                <Select firstSelection={firstSelection}
+                        lastSelection={lastSelection}
                         amount={amount}
                         units={units}
-                        output={0}
+                        output={false}
                         handleChange={e => setLastSelection(e.target.value)}
                 />
             </div>   

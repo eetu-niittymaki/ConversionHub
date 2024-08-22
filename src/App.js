@@ -51,7 +51,10 @@ function App() {
         <p>Currencies</p>
         <p>Binary</p>
       </Header >
-      <div className="App-body">
+      <div className="bg"></div>
+      <div className="bg bg2"></div>
+      <div className="bg bg3"></div>
+      <div className="content">
         {renderSwitch(conversionType)}
       </div>
     </div>

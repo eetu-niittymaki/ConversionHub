@@ -1,5 +1,5 @@
 import React from "react"
-import "./UnitForm.scss"
+import "../App.scss"
 
 const Form = ({amount, name, title,  handleChange}) => {
     return (

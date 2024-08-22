@@ -77,7 +77,7 @@ const  Currencies = () => {
                   handleChange={(e) => handleChange(e)}
             />
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "35vw"}}>
-                <Select type={"first"}
+                <Select type={true}
                         firstSelection={origCurrency}
                         amount={amount}
                         units={rates}
@@ -91,11 +91,10 @@ const  Currencies = () => {
                                                 finalCurrencyRef.current = origCurrency ;
                                                 calculateConversion()}}
                 />
-                <Select lastSelection={finalCurrencyRef.current}
-                        firstSelection={origCurrencyRef.current}
+                <Select firstSelection={origCurrencyRef.current}
+                        lastSelection={finalCurrencyRef.current}
                         amount={amountRef.current}
                         units={rates}
-                        output={1}
                         handleChange={(e) => { setFinalCurrency(e.target.value) ; 
                                                 finalCurrencyRef.current = e.target.value ; 
                                                 calculateConversion() }}
