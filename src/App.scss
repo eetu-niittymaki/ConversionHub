@@ -6,46 +6,28 @@
 
 .App {
   text-align: center;
+  
 }
-
-.App-body {
-  background: #0b2545;
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3vh;
-  color: #8da9c4;
-  font-family: "Bitter", sans-serif;
-  animation: fade-in 1s;
-}
-
-.bg {
-  animation: slide 30s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #0b2545 50%, #09f 50%,);
-  bottom: 0;
-  left: -50%;
-  opacity: .5;
-  position :fixed;
-  right: -50%;
-  top: 0;
-  z-index: -1;
+.bg1 {
+  height: 2000px;
+  background-color: red;
+  background-size: 100% auto;
+  background-position: top center;
+  background-attachment: fixed;
 }
 
 .bg2 {
-  animation-direction: alternate-reverse;
-  animation-duration: 18s;
-}
-
-.bg3 {
-  animation-duration: 21s;
+  height: 100%;
+  background-image: linear-gradient(hsl(10,90,66), transparent 60%);
+  background-size: 100% 100%;
+  mix-blend-mode: difference;
 }
 
 .content {
-  background-color:rgba(255, 255, 255, 0.829);
+  background-color: rgba(255, 255, 255, 0.603);
   color: black;
-  border-radius: .25em;
-  box-shadow: 2 1 5em rgba(0,0,0,.25);
+  border-radius: 0.25em;
+  box-shadow: 2px 1px 5em rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   left: 50%;
   padding: 10vmin;
@@ -53,27 +35,26 @@
   text-align: center;
   top: 50%;
   transform: translate(-50%, -50%);
-  animation: fade-in .50s;
+  animation: fade-in 1s;
 }
 
 h1 {
-  font-family: "Bitter", sans-serif; 
+  font-family: "Bitter", sans-serif;
   font-weight: bold;
-  animation: fade-in .50s;
+  animation: fade-in 1s;
 }
 
 select {
   appearance: none;
-  background-color: transparent;
+  background-color: black;
   border: none;
   padding: 0 1em 0 0;
   margin: 0;
   width: 100%;
   min-width: 15vh;
   min-height: 6vh;
-  font-family: "Roboto";
   font-weight: 900;
-  animation: fade-in .50s;
+  animation: fade-in 1s;
 }
 
 .select {
@@ -88,7 +69,7 @@ select {
   line-height: 1.1;
   background-color: #fff;
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-  animation: fade-in .50s;
+  animation: fade-in 1s;
 }
 
 select::-ms-expand {
@@ -99,7 +80,7 @@ form {
   position: relative;
   padding: 15px 0 0;
   margin-top: 10px;
-  animation: fade-in .50s;
+  animation: fade-in 1s;
 }
 
 input {
@@ -109,23 +90,23 @@ input {
   font-family: inherit;
   width: 100%;
   border: 0;
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid black;
   outline: 0;
   font-size: 1.3rem;
   color: black;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
-  animation: fade-in .50s;
+  animation: fade-in 1s;
 
   &::placeholder {
-      color: transparent;
+    color: transparent;
   }
 
   &:placeholder-shown ~ .formLabel {
-      font-size: 1.3rem;
-      cursor: text;
-      top: 20px;
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
   }
 }
 
@@ -136,7 +117,7 @@ form label {
   transition: 0.2s;
   font-size: 1rem;
   color: rgb(53, 52, 52);
-  animation: fade-in .50s;
+  animation: fade-in 1s;
 }
 
 input:focus {
@@ -147,32 +128,34 @@ input:focus {
     transition: 0.2s;
     font-size: 1rem;
     color: gray;
-    font-weight:700;    
+    font-weight: 700;
   }
-  padding-bottom: 6px;  
+  padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, gray,white);
   border-image-slice: 1;
 }
 
-input { 
-  &:required,&:invalid { box-shadow:none; }
+input {
+  &:required,
+  &:invalid {
+    box-shadow: none;
+  }
 }
 
 img {
   width: 5vh;
-  height:5vh;
-  animation: fade-in .50s;
+  height: 5vh;
+  animation: fade-in 1s;
 }
 
 @keyframes slide {
   0% {
-      transform: translateX(25%);
+    transform: translateX(25%);
   }
 
   100% {
-      transform: translateX(-25%);
+    transform: translateX(-25%);
   }
 }
 

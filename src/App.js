@@ -49,12 +49,12 @@ function App() {
         <p>Currencies</p>
         <p>Binary</p>
       </Header >
-      <div className="bg"></div>
-      <div className="bg bg2"></div>
-      <div className="bg bg3"></div>
-      <div className="content">
-        {renderSwitch(conversionType)}
+      <div className="bg1" style={{backgroundImage: `url(${process.env.PUBLIC_URL + '/images/bg.jpg'})` }}>
+        <div className="bg2"></div>
       </div>
+      <div className="content">
+          {renderSwitch(conversionType)}
+        </div>  
     </div>
   )
 }
