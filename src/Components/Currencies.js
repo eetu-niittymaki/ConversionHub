@@ -100,7 +100,7 @@ const  Currencies = () => {
                                                 calculateConversion() }}
                 />
             </div>
-            <h3>{amount ? `${amountRef.current * (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current])} ${finalCurrency}`: ""}</h3>  
+            <h3 className="result">{amount ? `${amountRef.current * (rates[finalCurrencyRef.current] / rates[origCurrencyRef.current])} ${finalCurrency}`: ""}</h3>  
         </div>
         
         </div>

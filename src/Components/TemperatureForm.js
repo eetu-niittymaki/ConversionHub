@@ -58,7 +58,7 @@ export default function TemperatureForm() {
                         ))}
                 </select>
             </div>     
-            <h3>{amount ? `${calculateTemp(lastSelection)} ${lastSelection}` : ""}</h3>
+            <h3 className="result">{amount ? `${calculateTemp(lastSelection)} ${lastSelection}` : ""}</h3>
         </div>
     )
   }

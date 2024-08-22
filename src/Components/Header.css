@@ -18,7 +18,7 @@
 .children {
     justify-content: space-evenly;
     margin: auto;
-    font-family: "Playfair Display", sans-serif;
+    font-family: "Titillium Web", sans-serif;
     cursor: pointer;
 }   
 
@@ -31,7 +31,7 @@
 .titleStart {
     color: #001F3F;
     font-size: 50px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Roboto', 'Arial Narrow', Arial, sans-serif;
     cursor: pointer;
 }
 

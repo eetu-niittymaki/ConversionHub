@@ -18,7 +18,7 @@
 
 .bg2 {
   height: 100%;
-  background-image: linear-gradient(hsl(10,90,66), transparent 60%);
+  background-image: linear-gradient(hsla(10, 90%, 66%, 0.671), transparent 60%);
   background-size: 100% 100%;
   mix-blend-mode: difference;
 }
@@ -39,7 +39,7 @@
 }
 
 h1 {
-  font-family: "Bitter", sans-serif;
+  font-family: "Crimson Text", sans-serif;
   font-weight: bold;
   animation: fade-in 1s;
 }
@@ -53,8 +53,10 @@ select {
   width: 100%;
   min-width: 15vh;
   min-height: 6vh;
-  font-weight: 900;
+  font-weight: 700;
   animation: fade-in 1s;
+  font-family: "Crimson Text", sans-serif;
+  font-weight: bold;
 }
 
 .select {
@@ -64,7 +66,7 @@ select {
   border: 1px solid var(--select-border);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   cursor: pointer;
   line-height: 1.1;
   background-color: #fff;
@@ -87,16 +89,17 @@ input {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: textfield;
-  font-family: inherit;
+  font-family: "Crimson Text", sans-serif;
   width: 100%;
   border: 0;
   border-bottom: 2px solid black;
   outline: 0;
-  font-size: 1.3rem;
+  font-size: 1.5em;
   color: black;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
+
   animation: fade-in 1s;
 
   &::placeholder {
@@ -147,6 +150,19 @@ img {
   width: 5vh;
   height: 5vh;
   animation: fade-in 1s;
+}
+
+option {
+  font-family: "Crimson Text", sans-serif;
+  font-weight: bold;
+  font-weight: 700;
+}
+
+.result {
+  font-family: "Crimson Text", sans-serif;
+  font-weight: bold;
+  font-size: 1.5em;
+  font-weight: 700;
 }
 
 @keyframes slide {
