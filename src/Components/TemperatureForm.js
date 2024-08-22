@@ -35,7 +35,7 @@ export default function TemperatureForm() {
                   title={"Temperature"}
                   handleChange={(e) => handleChange(e)}
             />  
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", maxWidth: "35vw"}}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%", maxWidth: "35vw"}}>
                 <Select type={true}
                         firstSelection={firstSelection}
                         amount={amount}

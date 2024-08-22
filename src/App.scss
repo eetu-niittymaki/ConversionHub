@@ -17,6 +17,7 @@
   font-size: 3vh;
   color: #8da9c4;
   font-family: "Bitter", sans-serif;
+  animation: fade-in 1s;
 }
 
 .bg {
@@ -52,12 +53,13 @@
   text-align: center;
   top: 50%;
   transform: translate(-50%, -50%);
+  animation: fade-in .50s;
 }
 
 h1 {
   font-family: "Bitter", sans-serif; 
   font-weight: bold;
-  
+  animation: fade-in .50s;
 }
 
 select {
@@ -67,11 +69,11 @@ select {
   padding: 0 1em 0 0;
   margin: 0;
   width: 100%;
-  border-color: black;
   min-width: 15vh;
   min-height: 6vh;
   font-family: "Roboto";
   font-weight: 900;
+  animation: fade-in .50s;
 }
 
 .select {
@@ -84,9 +86,9 @@ select {
   font-size: 1.25rem;
   cursor: pointer;
   line-height: 1.1;
-  border-color: black;
   background-color: #fff;
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  animation: fade-in .50s;
 }
 
 select::-ms-expand {
@@ -97,6 +99,7 @@ form {
   position: relative;
   padding: 15px 0 0;
   margin-top: 10px;
+  animation: fade-in .50s;
 }
 
 input {
@@ -113,6 +116,7 @@ input {
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
+  animation: fade-in .50s;
 
   &::placeholder {
       color: transparent;
@@ -132,6 +136,7 @@ form label {
   transition: 0.2s;
   font-size: 1rem;
   color: rgb(53, 52, 52);
+  animation: fade-in .50s;
 }
 
 input:focus {
@@ -155,14 +160,27 @@ input {
   &:required,&:invalid { box-shadow:none; }
 }
 
-
+img {
+  width: 5vh;
+  height:5vh;
+  animation: fade-in .50s;
+}
 
 @keyframes slide {
   0% {
-      transform:translateX(-25%);
+      transform: translateX(25%);
   }
 
   100% {
-      transform:translateX(25%);
+      transform: translateX(-25%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 50;
   }
 }

@@ -33,9 +33,7 @@ function App() {
       case "Binary":
         return <Binary/>
       default:
-        return <div>
-                <h1>Choose conversion type</h1>
-              </div>        
+        return <h1>Choose conversion type</h1>
     }
   }
 

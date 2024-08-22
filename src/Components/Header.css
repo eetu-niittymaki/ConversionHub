@@ -22,7 +22,7 @@
     cursor: pointer;
 }   
 
-.children:hover, .children:active, .children:focus {
+.children:hover {
     color: #eef4ed;
     background-color: #001F3F;
     border-radius: 5%;
@@ -40,4 +40,8 @@
     font-size: 30px;
     font-family:'Times New Roman', Times, serif;
     cursor: pointer;
+}
+
+.titleImg {
+    animation: none;
 }

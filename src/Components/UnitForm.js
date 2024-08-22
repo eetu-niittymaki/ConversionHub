@@ -19,7 +19,7 @@ export default function UnitForm({title, units}) {
     }
     
     return (
-        <div>
+        <div key={title}>
             <h1>{title}</h1>
             <Form amount={amount}
                   name={"amount"}
