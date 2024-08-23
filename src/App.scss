@@ -14,6 +14,7 @@
   background-size: 100% auto;
   background-position: top center;
   background-attachment: fixed;
+  transition: fade-in 1s opacity;
 }
 
 .bg2 {
@@ -35,7 +36,7 @@
   text-align: center;
   top: 50%;
   transform: translate(-50%, -50%);
-  animation: fade-in 1s;
+  transition: fade-in 1s;
 }
 
 h1 {
@@ -66,7 +67,7 @@ select {
   border: 1px solid var(--select-border);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
   line-height: 1.1;
   background-color: #fff;

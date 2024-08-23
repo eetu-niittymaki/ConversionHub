@@ -43,7 +43,9 @@ export default function UnitForm({title, units}) {
                         handleChange={e => setLastSelection(e.target.value)}
                 />
             </div>   
-            <h3 className="result">{amount ? `${amount * (units[firstSelection] / units[lastSelection])} ${lastSelection}`: ""}</h3>  
+            <h3 className="result">
+                {amount ? `${amount * (units[firstSelection] / units[lastSelection])} ${lastSelection}`: ""}
+            </h3>  
         </div>
     )
   }
