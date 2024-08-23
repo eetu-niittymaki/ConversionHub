@@ -44,7 +44,8 @@ export default function UnitForm({title, units}) {
                 />
             </div>   
             <h3 className="result">
-                {amount ? `${amount * (units[firstSelection] / units[lastSelection])} ${lastSelection}`: ""}
+                {amount ? amount * (units[firstSelection] / units[lastSelection]) : ""}
+                <span className="unit"> {amount ? lastSelection : ""}</span>
             </h3>  
         </div>
     )
