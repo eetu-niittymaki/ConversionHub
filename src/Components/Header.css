@@ -1,4 +1,5 @@
 .main {
+    margin-top: 1em;
     background-color: rgba(255, 255, 255, 0.836);  
     width: 100%;
     height: 100%;
@@ -18,6 +19,7 @@
 .children {
     justify-content: space-evenly;
     margin: auto;
+    max-width: 70%;
     font-family: "Titillium Web", sans-serif;
     cursor: pointer;
 }   
@@ -31,7 +33,7 @@
 .titleStart {
     color: black;
     font-size: 50px;
-    font-family: 'Roboto', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Bitter', 'Arial Narrow', Arial, sans-serif;
     cursor: pointer;
 }
 
