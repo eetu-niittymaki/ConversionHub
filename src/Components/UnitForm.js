@@ -26,7 +26,8 @@ export default function UnitForm({title, units}) {
                   title={title}
                   handleChange={handleChange}
             />  
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%",  maxWidth: "35vw"}}>
+            <div className="select_btn"
+                style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%",  maxWidth: "35vw"}}>
                 <Select type={true}
                         firstSelection={firstSelection} 
                         amount={amount}

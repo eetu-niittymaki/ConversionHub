@@ -6,8 +6,8 @@
 
 .App {
   text-align: center;
-  
 }
+
 .bg1 {
   height: 2000px;
   background-color: red;
@@ -39,13 +39,31 @@
   top: 50%;
   transform: translate(-50%, -50%);
   transition: fade-in 1s;
-  
+
+  @media (max-width: 768px) {
+    padding: 5vmin;
+    width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 3vmin;
+    width: 100%;
+    box-shadow: none;
+  }
 }
 
 h1 {
   font-family: "Crimson Text", sans-serif;
   font-weight: bold;
   animation: fade-in 1s;
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
 }
 
 select {
@@ -61,12 +79,21 @@ select {
   animation: fade-in 1s;
   font-family: "Crimson Text", sans-serif;
   font-weight: bold;
+  
+
+  @media (max-width: 768px) {
+    min-height: 5vh;
+  }
+
+  @media (max-width: 480px) {
+    min-height: 4vh;
+  }
 }
 
 .select {
   width: 100%;
-  min-width: 15ch;
-  max-width: 30ch;
+  min-width: 15vw;
+  max-width: 30vw;
   border: 1px solid var(--select-border);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
@@ -76,10 +103,14 @@ select {
   background-color: #fff;
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
   animation: fade-in 1s;
-}
 
-select::-ms-expand {
-  display: none;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.875rem;
+  }
 }
 
 form {
@@ -87,6 +118,14 @@ form {
   padding: 15px 0 0;
   margin-top: 10px;
   animation: fade-in 1s;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 5px;
+  }
 }
 
 input {
@@ -103,9 +142,16 @@ input {
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
-
   animation: fade-in 1s;
 
+  @media (max-width: 768px) {
+    font-size: 1.25em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1em;
+  }
+  
   &::placeholder {
     color: transparent;
   }
@@ -114,6 +160,14 @@ input {
     font-size: 1.3rem;
     cursor: text;
     top: 20px;
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -125,6 +179,14 @@ form label {
   font-size: 1rem;
   color: rgb(53, 52, 52);
   animation: fade-in 1s;
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+  }
 }
 
 input:focus {
@@ -136,6 +198,14 @@ input:focus {
     font-size: 1rem;
     color: gray;
     font-weight: 700;
+
+    @media (max-width: 768px) {
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.75rem;
+    }
   }
   padding-bottom: 6px;
   font-weight: 700;
@@ -154,6 +224,16 @@ img {
   width: 5vh;
   height: 5vh;
   animation: fade-in 1s;
+
+  @media (max-width: 768px) {
+    width: 4vh;
+    height: 4vh;
+  }
+
+  @media (max-width: 480px) {
+    width: 3vh;
+    height: 3vh;
+  }
 }
 
 option {
@@ -167,10 +247,18 @@ option {
   font-weight: bold;
   font-size: 1.5em;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 1.25em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1em;
+  }
 }
 
 .unit {
-  color: rgb(179, 7, 7)
+  color: rgb(179, 7, 7);
 }
 
 @keyframes slide {
