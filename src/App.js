@@ -52,7 +52,7 @@ function App() {
       case "Binary":
         return <Binary />
       default:
-        return <h1>Choose conversion type</h1>
+        return <h1 style={{color: "black"}}>Choose conversion type</h1>
     }
   }
 
@@ -73,7 +73,7 @@ function App() {
           backgroundImage: `url(${background})`, 
           opacity: fade ? 1 : 0 
         }}>
-        <div className="bg2"></div>
+        <div className="bg2"/>
       </div>
       <div className="content">
         {renderSwitch(conversionType)}

@@ -70,7 +70,7 @@ const  Currencies = () => {
     return(
         <div>
             <div>   
-            <h1>Currencies</h1>
+            <h1 className="unit">Currencies</h1>
             <Form amount={amount}
                   name={"amount"}
                   title={"Amount"}

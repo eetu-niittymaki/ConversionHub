@@ -5,6 +5,7 @@
     height: 100%;
     border-bottom: 6px solid grey;
     overflow: hidden;
+    position: sticky;
     top: 1;
 }
 
@@ -25,6 +26,7 @@
 }   
 
 .children:hover {
+    animation: fade-in 1s;
     color: #eef4ed;
     background-color: black;
     border-radius: 5%;

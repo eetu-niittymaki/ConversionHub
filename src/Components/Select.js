@@ -22,7 +22,7 @@ const Select = ({ type, firstSelection, lastSelection, units, amount, handleChan
                     {type
                         ? `${amount && unit === selectedValue ? amount : ""} ${unit}` 
                         : `${amount ? (output === false ? (amount * (units[firstSelection] / units[unit])) : (amount * (units[unit] / units[firstSelection]))) : ""} 
-                        ${unit}`
+                           ${unit}`
                     }
                 </option>
             ))}
