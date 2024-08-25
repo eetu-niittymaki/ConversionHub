@@ -18,18 +18,32 @@
 }
 
 .children {
+    display: inline-block;
     justify-content: space-evenly;
+    line-height: .05em;
     margin: auto;
     max-width: 70%;
     font-family: "Titillium Web", sans-serif;
     cursor: pointer;
 }   
 
+.children:after {
+    display:block;
+    content: '';
+    border-bottom: solid 3px rgb(179, 7, 7);  
+    list-style-type: none;
+    margin: 20px 0;
+    text-decoration: none;
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+}
+
+.children:hover:after {
+    transform: scaleX(1);
+}
+
 .children:hover {
-    animation: fade-in 1s;
-    color: #eef4ed;
-    background-color: black;
-    border-radius: 5%;
+    color: grey;
 }
 
 .titleStart {
@@ -49,3 +63,12 @@
 .titleImg {
     animation: none;
 }
+
+@keyframes fade-in {
+    from {
+      border-bottom: 0px;
+    }
+    to {
+        border-bottom: 1px;
+    }
+  }

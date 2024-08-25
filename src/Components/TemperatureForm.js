@@ -52,7 +52,8 @@ export default function TemperatureForm() {
                         className="select"
                         onChange={e => setLastSelection(e.target.value)}>
                         {Object.keys(tempUnits).filter(unit => unit !== firstSelection).map((unit) => (
-                            <option value={unit}>
+                            <option value={unit}
+                                    style={lastSelection === unit ? {color: "rgb(179, 7, 7)", fontWeight: "bold"} : {color: "inherit"}}>
                                {amount ? calculateTemp(unit) : ""} {unit} 
                                 </option>
                         ))}
