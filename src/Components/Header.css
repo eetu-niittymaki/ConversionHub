@@ -63,12 +63,3 @@
 .titleImg {
     animation: none;
 }
-
-@keyframes fade-in {
-    from {
-      border-bottom: 0px;
-    }
-    to {
-        border-bottom: 1px;
-    }
-  }
