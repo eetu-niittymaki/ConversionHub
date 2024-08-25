@@ -38,11 +38,13 @@
     transition: transform 250ms ease-in-out;
 }
 
-.children:hover:after {
+.children:hover:after,
+.children.active:after {
     transform: scaleX(1);
 }
 
-.children:hover {
+.children:hover,
+.children.active {
     color: grey;
 }
 
