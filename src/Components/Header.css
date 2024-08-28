@@ -25,6 +25,14 @@
     max-width: 70%;
     font-family: "Titillium Web", sans-serif;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        width: 25%;
+      }
+    
+      @media (max-width: 480px) {
+        width: 25%;
+      }
 }   
 
 .children:after {
