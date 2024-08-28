@@ -41,7 +41,7 @@
   transition: fade-in 1s;
 
   @media (max-width: 768px) {
-    width: 70%;
+    padding: 5rem;
   }
 
   @media (max-width: 480px) {
@@ -88,7 +88,6 @@ select {
 }
 
 .select {
-  width: 100%;
   min-width: 15vw;
   max-width: 30vw;
   border: 1px solid var(--select-border);
@@ -103,10 +102,12 @@ select {
 
   @media (max-width: 768px) {
     font-size: 1rem;
+    position: relative;
   }
 
   @media (max-width: 480px) {
     font-size: 0.875rem;
+    position: relative;
   }
 }
 
@@ -118,11 +119,6 @@ form {
   display: flex;
   flex-direction: row;
   gap: 10px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 5px;
-  }
 }
 
 input {
