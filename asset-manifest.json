@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ConversionHub/static/css/main.f26d17ed.css",
+    "main.css": "/ConversionHub/static/css/main.61879e30.css",
     "main.js": "/ConversionHub/static/js/main.2fe62c55.js",
     "static/js/453.98920d4c.chunk.js": "/ConversionHub/static/js/453.98920d4c.chunk.js",
     "index.html": "/ConversionHub/index.html",
-    "main.f26d17ed.css.map": "/ConversionHub/static/css/main.f26d17ed.css.map",
+    "main.61879e30.css.map": "/ConversionHub/static/css/main.61879e30.css.map",
     "main.2fe62c55.js.map": "/ConversionHub/static/js/main.2fe62c55.js.map",
     "453.98920d4c.chunk.js.map": "/ConversionHub/static/js/453.98920d4c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f26d17ed.css",
+    "static/css/main.61879e30.css",
     "static/js/main.2fe62c55.js"
   ]
 }
