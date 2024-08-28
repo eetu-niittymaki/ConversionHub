@@ -11,7 +11,7 @@
 .bg1 {
   height: 2000px;
   background-color: red;
-  background-size: 100% auto;
+  background-size: cover;
   background-position: top center;
   background-attachment: fixed;
   transition: opacity 2s ease-in-out;
@@ -41,14 +41,11 @@
   transition: fade-in 1s;
 
   @media (max-width: 768px) {
-    padding: 5vmin;
-    width: 90%;
+    width: 70%;
   }
 
   @media (max-width: 480px) {
-    padding: 3vmin;
-    width: 100%;
-    box-shadow: none;
+    width: 65%;
   }
 }
 
@@ -73,7 +70,6 @@ select {
   border: none;
   padding: 0 1em 0 0;
   margin: 0;
-  width: 100%;
   min-width: 15vh;
   min-height: 6vh;
   font-weight: 700;
