@@ -7,6 +7,14 @@
     overflow: hidden;
     position: sticky;
     top: 1;
+
+    @media (max-width: 768px) {
+        height: 150px;
+    }
+
+    @media (max-width: 480px) {
+        height: 130px;
+    }
 }
 
 .container {
@@ -28,11 +36,8 @@
 
     @media (max-width: 768px) {
         width: 25%;
-      }
-    
-      @media (max-width: 480px) {
-        width: 20%;
-      }
+        font-size: 1rem;
+    }
 }   
 
 .children:after {
@@ -61,6 +66,10 @@
     font-size: 50px;
     font-family: 'Bitter', 'Arial Narrow', Arial, sans-serif;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+       font-size: 30px;
+    }
 }
 
 .titleEnd {
@@ -68,6 +77,10 @@
     font-size: 30px;
     font-family:'Times New Roman', Times, serif;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        font-size: 20px;
+    }
 }
 
 .titleImg {

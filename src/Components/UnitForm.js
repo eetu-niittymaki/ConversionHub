@@ -13,7 +13,6 @@ export default function UnitForm({title, units}) {
         setFirstSelection(Object.keys(units)[0])
         setLastSelection(Object.keys(units)[1])
     }, [title, units])
-
     const handleChange = (e) => {
         setAmount(e.target.value)
     }
@@ -26,8 +25,7 @@ export default function UnitForm({title, units}) {
                   title={title}
                   handleChange={handleChange}
             />  
-            <div className="select_btn"
-                style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%",  maxWidth: "35vw"}}>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", marginBottom:"10%",  maxWidth: "35vw"}}>
                 <Select type={true}
                         firstSelection={firstSelection} 
                         amount={amount}

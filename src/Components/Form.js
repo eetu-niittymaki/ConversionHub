@@ -1,7 +1,7 @@
 import React from "react"
 import "../App.scss"
 
-const Form = ({amount, name, title,  handleChange}) => {
+const Form = ({amount, name, title, handleChange}) => {
     return (
         <form onSubmit={e =>  e.preventDefault()}>
             <input type="number" 

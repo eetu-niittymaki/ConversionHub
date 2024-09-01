@@ -1,11 +1,11 @@
-import './App.scss';
-import { useState, useEffect, useRef } from "react";
-import UnitForm from "./Components/UnitForm";
-import TemperatureForm from './Components/TemperatureForm';
-import Currencies from './Components/Currencies';
-import Binary from './Components/Binary';
-import Header from './Components/Header';
-import * as units from "./Utilities/units";
+import './App.scss'
+import { useState, useEffect, useRef } from "react"
+import UnitForm from "./Components/UnitForm"
+import TemperatureForm from './Components/TemperatureForm'
+import Currencies from './Components/Currencies'
+import Binary from './Components/Binary'
+import Header from './Components/Header'
+import * as units from "./Utilities/units"
 
 const backgrounds = [
   process.env.PUBLIC_URL + '/images/bg.jpg',
@@ -25,12 +25,12 @@ function App() {
     const timer = setInterval(() => {
       setFade(false) // Start fading out
       setTimeout(() => {
-        setBackground(backgrounds[index.current]); // Change the background image
+        setBackground(backgrounds[index.current]) // Change the background image
         index.current = (index.current + 1) % backgrounds.length
         setFade(true)
       }, 2000)
     }, 15000) // Time between background changes
-    return () => clearInterval(timer);
+    return () => clearInterval(timer)
   }, [])
 
   const renderSwitch = (param) => {
